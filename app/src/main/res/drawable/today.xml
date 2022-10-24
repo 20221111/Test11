@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/rectangle_9.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="333dp"
+    android:height="85dp"
+    android:viewportWidth="333"
+    android:viewportHeight="85">
+    <path
+        android:fillColor="#FFFBFBFB"
+        android:strokeColor="#FF666666"
+        android:strokeWidth="1"
+        android:pathData="M5.5 0.5h322c2.49 0 4.5 2.01 4.5 4.5v75c0 2.49-2.01 4.5-4.5 4.5H5.5C3.01 84.5 1 82.49 1 80V5c0-2.49 2.01-4.5 4.5-4.5Z"/>
+</vector>
