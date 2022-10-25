@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //ForgotPassword 클릭시 forgotpassword 페이지로 이동
         Button ForgotPassword = findViewById(R.id.ForgotPassword);
         ForgotPassword.setOnClickListener(new View.OnClickListener(){
 
@@ -47,5 +48,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageButton Sign_in = findViewById(R.id.Sign_in);
+        Sign_in.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
         }
+    });
     }
+}
