@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".Create_Account"/>
         <activity android:name=".Forgot_Password"/>
+        <activity android:name=".Login"/>
     </application>
 
 </manifest>
