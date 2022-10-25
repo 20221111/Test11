@@ -46,6 +46,9 @@ public class CLD extends AppCompatActivity {
 
         textView_month.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
+
+
+
         textView_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
