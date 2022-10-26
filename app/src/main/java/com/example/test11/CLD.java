@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class CLD extends AppCompatActivity {
+public class CLD extends AppCompatActivity { // 경향님
     private static final String TAG = "CLD";
 
     private SimpleDateFormat dateFormatForDisplaying = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);

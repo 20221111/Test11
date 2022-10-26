@@ -24,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
         mNow=System.currentTimeMillis();
         mDate=new Date(mNow);
         String searchText=mFormat.format(mDate);
+        joinmember jm=new joinmember();
 
         selectdata read = new selectdata();
         read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
+        insertData insert = new insertData();
+        insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/SignUp/"+jm.getId()+"?", "0");
 
         //New account 클릭시 sign up 페이지로 이동
         Button NewAccount = findViewById(R.id.NewAccount);
