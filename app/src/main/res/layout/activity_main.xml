@@ -9,100 +9,22 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
-        <ImageButton
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="182dp"
+            tools:layout_editor_absoluteY="373dp">
+        </com.google.android.material.tabs.TabLayout>
 
-            android:layout_width="63dp"
-            android:layout_height="66dp"
-            android:background="@drawable/user"
-            android:clipToOutline="true"
-            tools:ignore="MissingConstraints,RedundantNamespace,UnusedAttribute"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="500dp"
+            />
 
-        <ImageButton
-            android:id="@+id/search_bar"
-            android:layout_width="264dp"
-            android:layout_height="47dp"
-            android:background="@drawable/search_bar"
-            android:clipToOutline="true"
-            tools:ignore="MissingConstraints,RedundantNamespace,UnusedAttribute"
-            tools:layout_editor_absoluteX="81dp"
-            tools:layout_editor_absoluteY="22dp" />
-
-        <ImageButton
-            android:id="@+id/menu"
-            android:layout_width="32dp"
-            android:layout_height="49dp"
-            android:background="@drawable/menu"
-            android:clipToOutline="true"
-            tools:ignore="MissingConstraints,RedundantNamespace,UnusedAttribute"
-            tools:layout_editor_absoluteX="353dp"
-            tools:layout_editor_absoluteY="22dp" />
-
-
-        <ImageButton
-            android:id="@+id/notice"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:background="@drawable/notice"
-            android:clipToOutline="true"
-            tools:ignore="MissingConstraints,RedundantNamespace,UnusedAttribute"
-            tools:layout_editor_absoluteX="389dp"
-            tools:layout_editor_absoluteY="22dp" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView_month"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textAlignment="center"
-        android:background="#F9F9F9"
-        android:textColor="#FF000000"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:text="Month" />
-
-    <com.github.sundeepk.compactcalendarview.CompactCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/compactcalendar_view"
-        android:layout_width="match_parent"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:layout_height="250dp"
-        app:compactCalendarTargetHeight="250dp"
-        app:compactCalendarTextSize="12sp"
-        app:compactCalendarBackgroundColor="#F9F9F9"
-        app:compactCalendarTextColor="#FF000000"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#979797"
-        app:compactCalendarCurrentDayBackgroundColor="#3C3C3C"
-        app:compactCalendarMultiEventIndicatorColor="#fff"
-        />
-
-    <TextView
-        android:id="@+id/textView_result"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#D3D3D3"
-        android:gravity="center"
-        android:text="클릭한 날짜 정보"
-        android:textAlignment="center"
-        android:textColor="#050505" />
-
-    <TextView
-        android:id="@+id/textView_result2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#D3D3D3"
-        android:gravity="center"
-        android:text="가져온 날짜 정보"
-        android:textAlignment="center"
-        android:textColor="#2E2E2E" />
 
 </LinearLayout>
