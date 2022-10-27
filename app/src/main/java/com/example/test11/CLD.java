@@ -1,14 +1,41 @@
 package com.example.test11;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.tabs.TabLayout;
+import android.os.Bundle;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 
 public class CLD extends AppCompatActivity {
@@ -36,8 +63,6 @@ public class CLD extends AppCompatActivity {
         adapter.addFragment(new home());
         adapter.addFragment(new menu());
         adapter.addFragment(new search());
-        adapter.addFragment(new user());
-
 
         //ViewPager Fragment 연결
         viewPager.setAdapter(adapter);
@@ -45,19 +70,17 @@ public class CLD extends AppCompatActivity {
         //ViewPager과 TabLayout 연결
         tabLayout.setupWithViewPager(viewPager);
 
-        /*tabLayout.getTabAt(0).setText("홈");
+        tabLayout.getTabAt(0).setText("홈");
         tabLayout.getTabAt(1).setText("검색");
-        tabLayout.getTabAt(2).setText("마이페이지");*/
+        tabLayout.getTabAt(2).setText("마이페이지");}
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.home);
-        tabLayout.getTabAt(1).setIcon(R.drawable.menu);
-        tabLayout.getTabAt(2).setIcon(R.drawable.search);
-        tabLayout.getTabAt(3).setIcon(R.drawable.user);
-
-    }
 }
 
 /*
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
