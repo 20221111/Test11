@@ -24,6 +24,9 @@ public class insertData extends AsyncTask<String, Void, String> {
     private ArrayList<String> wishlist_drug;
     private String Result;
     String[] join={"email","name","password","security"};
+    String[] forgot_Id={"email","name"};
+    String[] forgot_pw={"id","security"};
+    String[] login={"id","password"};
     String searchText;
     private TextView mTextViewResult;
 
@@ -49,8 +52,8 @@ public class insertData extends AsyncTask<String, Void, String> {
             Log.d("데이터소통", result);
             showResult();
 
-
         }
+
     }
 
     @Override
@@ -71,11 +74,20 @@ public class insertData extends AsyncTask<String, Void, String> {
             join[2]="&password="+pw;
             join[3]="&security="+sec;
         }
+
         else if (params[1] == "1") { //아이디찾기
+            forgot_Id[0]="name="+name;
+            forgot_Id[1]="&email="+em;
 
         }
-        else if(params[2]=="2"){//비밀번호 찾기
+        else if(params[1]=="2"){//비밀번호 찾기
+            forgot_pw[0]="id="+id;
+            forgot_pw[1]="&security="+sec;
 
+        }
+        else if(params[1]=="3"){//로그인//이거 호출하고 나서 요청정보 jm에 넣으면 됨
+            login[0]="id="+id;
+            login[1]="&password="+pw;
         }
 
 
@@ -100,6 +112,24 @@ public class insertData extends AsyncTask<String, Void, String> {
 
             }
             else if (params[1] == "1") {
+                for (int i = 0; i < 2; i++) {
+                    outputStream.write(forgot_Id[i].getBytes("UTF-8"));
+                    Log.d("과연", forgot_Id[i]);
+                }
+
+            }
+            else if (params[1] == "2") {
+                for (int i = 0; i < 2; i++) {
+                    outputStream.write(forgot_pw[i].getBytes("UTF-8"));
+                    Log.d("과연", forgot_pw[i]);
+                }
+
+            }
+            else if (params[1] == "3") {
+                for (int i = 0; i < 2; i++) {
+                    outputStream.write(login[i].getBytes("UTF-8"));
+                    Log.d("과연", login[i]);
+                }
 
             }
 
@@ -143,14 +173,17 @@ public class insertData extends AsyncTask<String, Void, String> {
 
     private void showResult() {//회원가입시 호출
 
-        if(Result.contains("3")){
-            Log.d("데이터소통", "회원가입성공");
-        }
-        else if(Result.contains("2")){
-            Log.d("데이터소통", "회원가입실패-중복");
+        if(Result.contains("0")){//이부분 기능별로 분리될 필요가 있는데 ..흠 url으로 구분해야겠다
+            Log.d("데이터소통", "성공");
         }
         else if(Result.contains("1")){
-            Log.d("데이터소통", "회원가입실패-잘못된 입력");
+            Log.d("데이터소통", "에러");
+        }
+        else if(Result.contains("2")){
+            Log.d("데이터소통", "잘못된 입력");
+        }
+        else {
+            Log.d("데이터소통", "비밀번호 초기화");
         }
 
     }
