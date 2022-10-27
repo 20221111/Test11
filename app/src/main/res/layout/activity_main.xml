@@ -85,8 +85,9 @@
         app:compactCalendarMultiEventIndicatorColor="#fff"
         />
 
-    <TextView
-        android:id="@+id/textView_result"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listView_result"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="#D3D3D3"
@@ -94,6 +95,7 @@
         android:text="클릭한 날짜 정보"
         android:textAlignment="center"
         android:textColor="#050505" />
+
 
     <TextView
         android:id="@+id/textView_result2"

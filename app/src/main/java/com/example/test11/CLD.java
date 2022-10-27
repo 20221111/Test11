@@ -12,12 +12,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -30,22 +33,35 @@ public class CLD extends AppCompatActivity { // 경향님
     private SimpleDateFormat dateFormatForDisplaying = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("yyyy년 MM월", Locale.KOREA);
     private SimpleDateFormat dateFormatForMonth2 = new SimpleDateFormat("yyyy-MM", Locale.KOREA);
+    ArrayList<commMain> cm_List;
 
+
+      // adapter 생성
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         final CompactCalendarView compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        RecyclerView recyclerview;
+        Adapter adapter = new Adapter(cm_List);
+        Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
+        recyclerview = findViewById(R.id.listView_result);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerview.setLayoutManager(linearLayoutManager);
+        // recyclerview에 adapter 적용
+        recyclerview.setAdapter(adapter);
 
         TextView textView_month = (TextView) findViewById(R.id.textView_month);
-        TextView textView_result = (TextView) findViewById(R.id.textView_result);
+        TextView textView_result = (TextView) findViewById(R.id.textView_result2);
+
+
 
 
         textView_month.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
+
 
 
 
@@ -94,6 +110,7 @@ public class CLD extends AppCompatActivity { // 경향님
 
             }
         });
+
 
 
         // 날짜 클릭 이벤트 관련 코드
