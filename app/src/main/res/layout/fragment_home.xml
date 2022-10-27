@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView_month"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#F9F9F9"
+            android:gravity="center"
+            android:text="Month"
+            android:textAlignment="center"
+            android:textColor="#FF000000"
+            android:textSize="30sp" />
+
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/compactcalendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:compactCalendarBackgroundColor="#F9F9F9"
+            app:compactCalendarCurrentDayBackgroundColor="#3C3C3C"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#979797"
+            app:compactCalendarMultiEventIndicatorColor="#fff"
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextColor="#FF000000"
+            app:compactCalendarTextSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView_result"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#D3D3D3"
+            android:gravity="center"
+            android:text="클릭한 날짜 정보"
+            android:textAlignment="center"
+            android:textColor="#050505" />
+
+        <TextView
+            android:id="@+id/textView_result2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#D3D3D3"
+            android:gravity="center"
+            android:text="가져온 날짜 정보"
+            android:textAlignment="center"
+            android:textColor="#2E2E2E" />
+    </LinearLayout>
+
+</FrameLayout>
