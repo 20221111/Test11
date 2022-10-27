@@ -57,6 +57,11 @@
             android:text="가져온 날짜 정보"
             android:textAlignment="center"
             android:textColor="#2E2E2E" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test/login"/>
     </LinearLayout>
 
 </FrameLayout>
