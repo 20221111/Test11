@@ -37,14 +37,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Sign in 클릭 시 메인(캘린더) 화면으로 이동
         ImageButton Sign_in = findViewById(R.id.Sign_in);
         Sign_in.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), Login.class);
+                Intent intent = new Intent(getApplicationContext(), CLD.class);
                 startActivity(intent);
         }
     });
+
+
     }
 }
