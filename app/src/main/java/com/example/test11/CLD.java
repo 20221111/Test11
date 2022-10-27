@@ -42,13 +42,13 @@ public class CLD extends AppCompatActivity { // 경향님
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         final CompactCalendarView compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        cm_List = new ArrayList<>();
         RecyclerView recyclerview;
         Adapter adapter = new Adapter(cm_List);
         Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
         recyclerview = findViewById(R.id.listView_result);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         recyclerview.setLayoutManager(linearLayoutManager);
         // recyclerview에 adapter 적용
         recyclerview.setAdapter(adapter);
