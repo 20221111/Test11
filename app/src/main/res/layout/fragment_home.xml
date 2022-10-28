@@ -59,9 +59,10 @@
             android:textColor="#2E2E2E" />
 
         <Button
+            android:id="@+id/btn_ft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test/login"/>
+            android:text="FT" />
     </LinearLayout>
 
 </FrameLayout>

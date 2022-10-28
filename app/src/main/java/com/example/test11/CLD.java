@@ -63,6 +63,7 @@ public class CLD extends AppCompatActivity {
         adapter.addFragment(new home());
         adapter.addFragment(new menu());
         adapter.addFragment(new search());
+        adapter.addFragment(new user());
 
         //ViewPager Fragment 연결
         viewPager.setAdapter(adapter);
@@ -70,9 +71,15 @@ public class CLD extends AppCompatActivity {
         //ViewPager과 TabLayout 연결
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setText("홈");
+      /*  tabLayout.getTabAt(0).setText("홈");
         tabLayout.getTabAt(1).setText("검색");
-        tabLayout.getTabAt(2).setText("마이페이지");}
+        tabLayout.getTabAt(2).setText("마이페이지");*/
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.home);
+        tabLayout.getTabAt(2).setIcon(R.drawable.menu);
+        tabLayout.getTabAt(1).setIcon(R.drawable.search);
+        tabLayout.getTabAt(3).setIcon(R.drawable.user);
+    }
 
 }
 
