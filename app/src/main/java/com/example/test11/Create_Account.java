@@ -1,35 +1,42 @@
 package com.example.test11;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class Create_Account extends AppCompatActivity {
+//    String str;
+//    str=edit.get
+
+
     @Override
     protected void onCreate (@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        joinmember jm=new joinmember();
 
-        /*String id=입력아이디;
-        String password=입력;
-        String email=입력;
-        String name=입력;
-        String security=입력;*/
 
-        //클릭 버튼 생겨야하고
-        //클릭 버튼 이후
-
-       /* jm.setId(id);
-        jm.setEmail(email);
-        jm.setName(name);
-        jm.setPassword(password);
-        jm.setSecurity(security);*/
-
-        /*insertData insert = new insertData();
-        insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/SignUp/"+jm.getId()+"?", "0");*/
-
+//        ImageButton sign_up = findViewById(R.id.sign_up);
+//        sign_up.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                if(!IDPatttern)
+//
+//                    //정상적으로 입력한 경우
+//
+//                }
+//
+//
+//        }
     }
 
 }
