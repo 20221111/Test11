@@ -1,28 +1,23 @@
-//package com.example.test11;
-//
-//import android.os.Bundle;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//
-//import androidx.annotation.NonNull;
-//import androidx.annotation.Nullable;
-//import androidx.fragment.app.Fragment;
-//
-////외부에서 new Frag1 호출 시
-//public class home extends Fragment {
-//    @Nullable
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View v=inflater.inflate(R.layout.fragment_home,container,false);
-//
-//        return v;
-//    }
-//}
 package com.example.test11;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,7 +25,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,25 +39,14 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 
-
 //외부에서 new Frag1 호출 시
 public class home extends Fragment {
-
-
-    Button btn_dialog;
-
-    List<String> mSelectedItems;
-
-    AlertDialog.Builder builder;
-
-
 
     private static final String TAG = "MainActivity";
 
@@ -75,12 +58,49 @@ public class home extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-
+        //ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
         final CompactCalendarView compactCalendarView = (CompactCalendarView) v.findViewById(R.id.compactcalendar_view);
 
         TextView textView_month = (TextView) v.findViewById(R.id.textView_month);
-        TextView textView_result = (TextView) v.findViewById(R.id.textView_result);
+        TextView textView_result = (TextView) v.findViewById(R.id.textView_result2);
+
+
+        ArrayList<commMain> cm_List;
+
+        long mNow;
+        Date mDate;
+        SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
+        mNow=System.currentTimeMillis();
+        mDate=new Date(mNow);
+        String searchText=mFormat.format(mDate);
+        joinmember jm=new joinmember();
+        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+
+        selectdata read = new selectdata();
+        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
+
+        cm_List = new ArrayList<>();
+        RecyclerView recyclerview;
+
+        recyclerview = (RecyclerView) v.findViewById(R.id.listView_result);
+        LinearLayoutManager linearLayoutManager;
+        linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
+        recyclerview.setLayoutManager(linearLayoutManager);
+        // recyclerview에 adapter 적용
+        recyclerview.setAdapter(read.adapter);
+        read.adapter.notifyDataSetChanged();
+
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                Log.d("어뎁터왔나", String.valueOf(read.adapter.getItemCount()));//어뎁터에 세팅은 완료
+
+            }
+        }, 1000);
 
 
         textView_month.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
@@ -114,7 +134,7 @@ public class home extends Fragment {
                                 Log.d(TAG, "태그 currentLong : " + currentLong);
 
                                 compactCalendarView.removeEvents(currentLong);
-                                textView_result.setText("");
+                                //textView_result.setText("");
                                 Toast.makeText(getActivity(), "일정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -141,7 +161,7 @@ public class home extends Fragment {
 
                 // 해당날짜에 이벤트가 있으면
                 if (events.size() > 0) {
-                    textView_result.setText(events.get(0).getData().toString());
+                    //textView_result.setText(events.get(0).getData().toString());
                 }
                 // 해당날짜에 이벤트가 없으면
                 else {
@@ -185,7 +205,7 @@ public class home extends Fragment {
 
                                                     Event ev1 = new Event(Color.GREEN, currentLong, clickDate + " : " + editText.getText().toString());
                                                     compactCalendarView.addEvent(ev1);
-                                                    textView_result.setText(clickDate + " : " + editText.getText().toString());
+                                                    //textView_result.setText(clickDate + " : " + editText.getText().toString());
                                                     Toast.makeText(getActivity(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
                                                 }
                                             })
@@ -223,63 +243,6 @@ public class home extends Fragment {
         });
         return v;
     }
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getActivity().setContentView(R.layout.fragment_home);
 
-        btn_dialog=findViewById(R.id.btn_ft);
-
-        setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog();
-            }
-        });
-    }
-    public void showDialog(){
-        mSelectedItems = new ArrayList<>();
-        builder = new AlertDialog.Builder(home.this);
-        builder.setTitle("일정을 선택하세요");
-
-        //클릭 이벤트
-        builder.setMultiChoiceItems(R.array.filter, null, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                //데이터 리스트 담기
-                String[] items = getResources().getStringArray(R.array.filter);
-
-                //선택된 아이템 담기
-                if(isChecked){
-                    mSelectedItems.add(items[which]);
-                }else if(mSelectedItems.contains (items[which])){
-                    mSelectedItems.remove(items[which]);
-                }
-            }
-        });
-
-        //OK이벤트
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String final_seletion = "";
-                for(String item : mSelectedItems){
-                    final_seletion = final_seletion + "\n" + item;
-                }
-                Toast.makeText(getApplicationContext(),"필터링 된 일정은" + final_seletion, Toast.LENGTH_SHORT).show();
-            }
-        });
-        //취소 이벤트
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
 }
 
-
-
-//추가한 코드

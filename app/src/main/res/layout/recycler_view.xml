@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="35dp">
+
+
+    <TextView
+        android:id="@+id/textView1"
+        style="@style/recyclerview_contents"
+        android:text="타이틀" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/recyclerview_contents"
+        android:text="날짜" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/recyclerview_contents"
+        android:text="시간" />
+
+
+</LinearLayout>
