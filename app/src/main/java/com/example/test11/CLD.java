@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -43,15 +44,42 @@ public class CLD extends AppCompatActivity { // 경향님
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final CompactCalendarView compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        long mNow;
+        Date mDate;
+        SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
+        mNow=System.currentTimeMillis();
+        mDate=new Date(mNow);
+        String searchText=mFormat.format(mDate);
+        joinmember jm=new joinmember();
+        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+
+        selectdata read = new selectdata();
+        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
+
         cm_List = new ArrayList<>();
         RecyclerView recyclerview;
-        Adapter adapter = new Adapter(cm_List);
-        Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
+        //dapter adapter = new Adapter(cm_List);
+        //ArrayList<commMain>cm_List2=adapter.getCm_List();
+        //Adapter adapter1=new Adapter(cm_List2);
         recyclerview = findViewById(R.id.listView_result);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager;
+        linearLayoutManager = new LinearLayoutManager(CLD.this,LinearLayoutManager.VERTICAL, false);
         recyclerview.setLayoutManager(linearLayoutManager);
         // recyclerview에 adapter 적용
-        recyclerview.setAdapter(adapter);
+        recyclerview.setAdapter(read.adapter);
+        read.adapter.notifyDataSetChanged();
+
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                Log.d("어뎁터왔나", String.valueOf(read.adapter.getItemCount()));//어뎁터에 세팅은 완료
+
+            }
+        }, 1000);
+
 
         TextView textView_month = (TextView) findViewById(R.id.textView_month);
         TextView textView_result = (TextView) findViewById(R.id.textView_result2);

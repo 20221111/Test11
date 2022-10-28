@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     //private Adapter adapter = new Adapter();    // adapter 생성
     ArrayList<commMain> cm_List;
     private RecyclerView recyclerview;
-    private Adapter adapter = new Adapter(cm_List);    // adapter 생성
+    //private Adapter adapter = new Adapter(cm_List);    // adapter 생성
 
 
     @SuppressLint("MissingInflatedId")
@@ -31,17 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        long mNow;
-        Date mDate;
-        SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
-        mNow=System.currentTimeMillis();
-        mDate=new Date(mNow);
-        String searchText=mFormat.format(mDate);
-        joinmember jm=new joinmember();
-
-        selectdata read = new selectdata();
-        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
-
 
         //insertData insert = new insertData(); 회원가입 테스트용이었음.
         //insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/SignUp/"+jm.getId()+"?", "0");
