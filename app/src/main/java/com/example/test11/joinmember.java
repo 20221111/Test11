@@ -1,7 +1,7 @@
 package com.example.test11;
 
 public class joinmember { //회원가입정보 생성자 하드코딩되어있으니 수정해야함
-    String id="apfhd111";
+    String id="qkqh111";
     String password="qkqh111";
     String email="qkqh123@gmail.com";
     String name="김바보";

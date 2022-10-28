@@ -29,6 +29,7 @@ public class insertData extends AsyncTask<String, Void, String> {
     String[] login={"id","password"};
     String searchText;
     private TextView mTextViewResult;
+    Boolean loginresult;
 
 
 
@@ -86,7 +87,7 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         }
         else if(params[1]=="3"){//로그인//이거 호출하고 나서 요청정보 jm에 넣으면 됨
-            login[0]="id="+id;
+            //login[0]="id="+id;
             login[1]="&password="+pw;
         }
 
@@ -126,7 +127,7 @@ public class insertData extends AsyncTask<String, Void, String> {
 
             }
             else if (params[1] == "3") {
-                for (int i = 0; i < 2; i++) {
+                for (int i = 1; i < 2; i++) {//테스트
                     outputStream.write(login[i].getBytes("UTF-8"));
                     Log.d("과연", login[i]);
                 }
@@ -175,12 +176,15 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         if(Result.contains("0")){//이부분 기능별로 분리될 필요가 있는데 ..흠 url으로 구분해야겠다
             Log.d("데이터소통", "성공");
+            loginresult=true;
         }
         else if(Result.contains("1")){
             Log.d("데이터소통", "에러");
+            loginresult=false;
         }
         else if(Result.contains("2")){
-            Log.d("데이터소통", "잘못된 입력");
+            Log.d("데이터소통", "에러 틀림");
+            loginresult=false;
         }
         else {
             Log.d("데이터소통", "비밀번호 초기화");
