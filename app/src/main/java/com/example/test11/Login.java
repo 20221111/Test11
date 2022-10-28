@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
                     Log.d("로그인", jm.getId());
                     startActivity(intentMainActivity);//로그인에 성공해야 달력화면으로 넘어감
-                    //이부분에 코드 추가하면 됨.
+
                 }
                 else if(insert.loginresult==false){
                     Log.d("로그인", "로그인실패");
