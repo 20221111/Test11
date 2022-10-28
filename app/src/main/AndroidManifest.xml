@@ -27,7 +27,7 @@
                 android:value="" />
         </activity>
         <activity android:name=".Create_Account"/>
-        <activity android:name=".CLD"/>
+        <activity android:name=".home"/>
         <activity android:name=".Forgot_Password"/>
         <activity android:name=".Login"/>
     </application>

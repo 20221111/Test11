@@ -52,49 +52,12 @@ public class CLD extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private fragmentAdapter adapter;
-    ArrayList<commMain> cm_List;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        long mNow;
-        Date mDate;
-        SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
-        mNow=System.currentTimeMillis();
-        mDate=new Date(mNow);
-        String searchText=mFormat.format(mDate);
-        joinmember jm=new joinmember();
-        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
-
-        selectdata read = new selectdata();
-        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
-
-        cm_List = new ArrayList<>();
-        RecyclerView recyclerview;
-        //dapter adapter = new Adapter(cm_List);
-        //ArrayList<commMain>cm_List2=adapter.getCm_List();
-        //Adapter adapter1=new Adapter(cm_List2);
-        recyclerview = findViewById(R.id.listView_result);
-        LinearLayoutManager linearLayoutManager;
-        linearLayoutManager = new LinearLayoutManager(CLD.this,LinearLayoutManager.VERTICAL, false);
-        recyclerview.setLayoutManager(linearLayoutManager);
-        // recyclerview에 adapter 적용
-        recyclerview.setAdapter(read.adapter);
-        read.adapter.notifyDataSetChanged();
-
-
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                Log.d("어뎁터왔나", String.valueOf(read.adapter.getItemCount()));//어뎁터에 세팅은 완료
-
-            }
-        }, 1000);
 
 
         tabLayout=findViewById(R.id.tabs);

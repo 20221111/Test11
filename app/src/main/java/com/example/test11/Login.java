@@ -22,14 +22,14 @@ public class Login extends AppCompatActivity {
         cm_List = new ArrayList<>();
         
         //String id = null;
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_home);
 
         joinmember jm=new joinmember();
         insertData insert = new insertData(); //로그인 가동
         insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Login/"+jm.getId()+"?", "3");
         String id=jm.getId();
         Intent intentMainActivity =
-                new Intent(Login.this, CLD.class);
+                new Intent(Login.this, home.class);
         intentMainActivity.putExtra("nickname", id);
         new Handler().postDelayed(new Runnable() {
             @Override
