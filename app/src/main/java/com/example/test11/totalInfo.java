@@ -1,6 +1,6 @@
 package com.example.test11;
 
-public class comm {
+public class totalInfo {
     String sess;
     String committee_NAME;
     String title;

@@ -17,6 +17,6 @@ class ViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         title = itemView.findViewById(R.id.textView1);
         date = itemView.findViewById(R.id.textView2);
-        time = itemView.findViewById(R.id.textView2);
+        time = itemView.findViewById(R.id.textView3);
     }
 }
