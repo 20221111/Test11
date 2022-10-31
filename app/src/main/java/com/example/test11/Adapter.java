@@ -5,13 +5,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
@@ -19,8 +24,16 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     ArrayList<bonsche> bs_List;
     Activity activity;
 
+
+
+
     public Adapter(ArrayList<totalDate> tt_List) {
+
         this.tt_List = tt_List;
+        /*if(clicked=true){
+            searchText=cDate;
+            clicked=false;
+        }*/
     }
     @NonNull
     @Override
@@ -59,9 +72,24 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         return tt_List.size();
     }
     public void setCm_List(totalDate strData) {
-        tt_List.add(strData);
+        long mNow=System.currentTimeMillis();
+        Date mDate=new Date(mNow);
+        SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String cDate;//home에서 클릭한 date
+        boolean clicked=false;
+        String searchText=mFormat.format(mDate);
+        Log.d("날짜테스트",strData.getMeeting_DATE().substring(0,10));
+        Log.d("클릭날짜테스트",searchText);
+        if(strData.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+            tt_List.add(strData);
+        }
     }
     public ArrayList<totalDate> getCm_List(){
         return tt_List;
     }
+
+   /* public void setCdate(String clickdate,boolean clicked){
+        *//*this.cDate= clickdate;
+        this.clicked=clicked;*//*
+    }*/
 }

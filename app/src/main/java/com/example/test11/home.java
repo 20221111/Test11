@@ -54,6 +54,8 @@ public class home extends Fragment {
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("yyyy년 MM월", Locale.KOREA);
     private SimpleDateFormat dateFormatForMonth2 = new SimpleDateFormat("yyyy-MM", Locale.KOREA);
 
+    public String searchText;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class home extends Fragment {
         SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
         mNow=System.currentTimeMillis();
         mDate=new Date(mNow);
-        String searchText=mFormat.format(mDate);
+        searchText=mFormat.format(mDate);
         joinmember jm=new joinmember();
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
 
@@ -158,6 +160,13 @@ public class home extends Fragment {
             public void onDayClick(Date dateClicked) {
                 Log.d(TAG, "태그 dateClicked : " + dateClicked);
                 List<Event> events = compactCalendarView.getEvents(dateClicked);
+                SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+                String clickDate = simpleDate.format(dateClicked);
+
+
+                //read.adapter.setCdate(clickDate,true);
+                //read.adapter.notifyDataSetChanged();
+
 
                 // 해당날짜에 이벤트가 있으면
                 if (events.size() > 0) {
@@ -165,9 +174,6 @@ public class home extends Fragment {
                 }
                 // 해당날짜에 이벤트가 없으면
                 else {
-                    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-                    String clickDate = simpleDate.format(dateClicked);
-
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     AlertDialog dialog = builder.setTitle("일정추가하기")
