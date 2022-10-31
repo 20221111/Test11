@@ -50,7 +50,6 @@ public class Login extends AppCompatActivity {
             }
         }, 1000);
 
-
         /*RecyclerView recyclerview;
         Adapter adapter = new Adapter(cm_List);
         //Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
@@ -60,5 +59,4 @@ public class Login extends AppCompatActivity {
         // recyclerview에 adapter 적용
         recyclerview.setAdapter(adapter);*/
     }
-
 }

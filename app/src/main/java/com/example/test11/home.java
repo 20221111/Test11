@@ -2,6 +2,7 @@ package com.example.test11;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,8 +47,9 @@ import java.util.List;
 import java.util.Locale;
 
 
+
 //외부에서 new Frag1 호출 시
-public class home extends Fragment {
+public class home extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
 
@@ -58,7 +61,39 @@ public class home extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-        //ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        super.onCreate(savedInstanceState);
+
+        //필터링 팝업
+        Button NewAccount = v.findViewById(R.id.test);
+        NewAccount.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              final View popupView = getLayoutInflater().inflate(R.layout.popup, null);
+                                              final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                              builder.setView(popupView);
+
+                                              final AlertDialog alertDialog = builder.create();
+                                              alertDialog.show();
+                                              //확인버튼
+                                              Button btnInsert = popupView.findViewById(R.id.ok);
+                                              btnInsert.setOnClickListener(new Button.OnClickListener(){
+                                                  public void onClick(View v){
+                                                      /*
+                                                      필터링 목록 저장하여 화면에 반환하는 코드 생성
+                                                       */
+                                                  }
+                                              });
+                                                //취소버튼
+                                              Button btnCancel = popupView.findViewById(R.id.cancel);
+                                              btnCancel.setOnClickListener(new Button.OnClickListener(){
+                                                  public void onClick(View v){
+                                                      alertDialog.dismiss();
+                                                  }
+                                              });
+                                          }
+                                      });
+
+            //ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
         final CompactCalendarView compactCalendarView = (CompactCalendarView) v.findViewById(R.id.compactcalendar_view);
 
@@ -244,5 +279,9 @@ public class home extends Fragment {
         return v;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
 

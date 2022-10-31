@@ -55,14 +55,15 @@ public class CLD extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabLayout=findViewById(R.id.tabs);
-        viewPager=findViewById(R.id.view_pager);
-        adapter=new fragmentAdapter(getSupportFragmentManager(),1);
+        tabLayout = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.view_pager);
+        adapter = new fragmentAdapter(getSupportFragmentManager(), 1);
 
         //FragmentAdapter에 컬렉션 담기
         adapter.addFragment(new home());
         adapter.addFragment(new menu());
         adapter.addFragment(new search());
+        adapter.addFragment(new user());
 
         //ViewPager Fragment 연결
         viewPager.setAdapter(adapter);
@@ -76,6 +77,7 @@ public class CLD extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(R.drawable.search);
         tabLayout.getTabAt(3).setIcon(R.drawable.user);
     }
+}
 
 /*
 
