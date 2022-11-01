@@ -85,13 +85,15 @@ public class home extends Fragment {
         cm_List = new ArrayList<>();
         RecyclerView recyclerview;
 
+
+
         recyclerview = (RecyclerView) v.findViewById(R.id.listView_result);
         LinearLayoutManager linearLayoutManager;
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview.setLayoutManager(linearLayoutManager);
         // recyclerview에 adapter 적용
-        recyclerview.setAdapter(read.adapter);
-        read.adapter.notifyDataSetChanged();
+        recyclerview.setAdapter(read.a1); //selectData에서 add해도 성ㄷ공
+        read.a1.notifyDataSetChanged();
 
 
 
@@ -99,10 +101,15 @@ public class home extends Fragment {
             @Override
             public void run() {
 
-                Log.d("어뎁터왔나", String.valueOf(read.adapter.getItemCount()));//어뎁터에 세팅은 완료
+
+                Log.d("어뎁터왔나", String.valueOf(read.a1.getItemCount()));//어뎁터에 세팅은 완료
 
             }
         }, 1000);
+
+        //Log.d("어뎁터왔나", read.showResult().);//어뎁터에 세팅은 완료
+
+
 
 
         textView_month.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
@@ -163,7 +170,8 @@ public class home extends Fragment {
                 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
                 String clickDate = simpleDate.format(dateClicked);
 
-
+                read.to_list.clear();
+                read.showResult(clickDate);
                 //read.adapter.setCdate(clickDate,true);
                 //read.adapter.notifyDataSetChanged();
 

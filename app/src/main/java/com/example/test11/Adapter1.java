@@ -10,17 +10,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
 
     ArrayList<totalDate> tt_List;
+    ArrayList<commMain> cm_List;
     //List<?> mergedList;
 
     Activity activity;
 
-    public Adapter1( ArrayList<totalDate> tt_list) {
-        this.tt_List=tt_list;
+    public Adapter1( ArrayList<totalDate> tt_List) {
+        this.tt_List=tt_List;
 
     }
     @NonNull
