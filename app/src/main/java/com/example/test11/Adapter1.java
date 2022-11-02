@@ -3,37 +3,25 @@ package  com.example.test11;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<ViewHolder> {
+public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
 
     ArrayList<totalDate> tt_List;
-    ArrayList<bonsche> bs_List;
+    //List<?> mergedList;
+
     Activity activity;
 
+    public Adapter1( ArrayList<totalDate> tt_list) {
+        this.tt_List=tt_list;
 
-
-
-    public Adapter(ArrayList<totalDate> tt_List) {
-
-        this.tt_List = tt_List;
-        /*if(clicked=true){
-            searchText=cDate;
-            clicked=false;
-        }*/
     }
     @NonNull
     @Override
@@ -46,7 +34,8 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        //commMain cm = tt_List.get(position);
+        //commMain cm = cm_List.get(position);
+        //String mg= (String) mergedList.get(position);
         //String imageurl=drugimage.getDrugImg();
         holder.title.setText(tt_List.get(position).getTitle());
         holder.date.setText(tt_List.get(position).getMeeting_DATE());
@@ -71,25 +60,11 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     public int getItemCount() {
         return tt_List.size();
     }
-    public void setCm_List(totalDate strData) {
-        long mNow=System.currentTimeMillis();
-        Date mDate=new Date(mNow);
-        SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
-        String cDate;//home에서 클릭한 date
-        boolean clicked=false;
-        String searchText=mFormat.format(mDate);
-        Log.d("날짜테스트",strData.getMeeting_DATE().substring(0,10));
-        Log.d("클릭날짜테스트",searchText);
-        if(strData.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-            tt_List.add(strData);
-        }
+    public void setCm_List(ArrayList<totalDate> to_list) {
+        notifyDataSetChanged();
+
     }
-    public ArrayList<totalDate> getCm_List(){
+    public ArrayList<totalDate> getMg_List(){
         return tt_List;
     }
-
-   /* public void setCdate(String clickdate,boolean clicked){
-        *//*this.cDate= clickdate;
-        this.clicked=clicked;*//*
-    }*/
 }
