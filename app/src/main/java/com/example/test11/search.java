@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 public class search extends Fragment {
@@ -16,5 +17,6 @@ public class search extends Fragment {
         View v=inflater.inflate(R.layout.fragment_search,container,false);
 
         return v;
+
     }
 }

@@ -8,6 +8,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchForm"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         app:iconifiedByDefault="false"
