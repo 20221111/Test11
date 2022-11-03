@@ -54,6 +54,8 @@ public class home extends Fragment {
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("yyyy년 MM월", Locale.KOREA);
     private SimpleDateFormat dateFormatForMonth2 = new SimpleDateFormat("yyyy-MM", Locale.KOREA);
 
+    public String searchText;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class home extends Fragment {
         SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
         mNow=System.currentTimeMillis();
         mDate=new Date(mNow);
-        String searchText=mFormat.format(mDate);
+        searchText=mFormat.format(mDate);
         joinmember jm=new joinmember();
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
 
@@ -83,13 +85,15 @@ public class home extends Fragment {
         cm_List = new ArrayList<>();
         RecyclerView recyclerview;
 
+
+
         recyclerview = (RecyclerView) v.findViewById(R.id.listView_result);
         LinearLayoutManager linearLayoutManager;
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview.setLayoutManager(linearLayoutManager);
         // recyclerview에 adapter 적용
-        recyclerview.setAdapter(read.adapter);
-        read.adapter.notifyDataSetChanged();
+        recyclerview.setAdapter(read.a1); //selectData에서 add해도 성ㄷ공
+        read.a1.notifyDataSetChanged();
 
 
 
@@ -97,10 +101,15 @@ public class home extends Fragment {
             @Override
             public void run() {
 
-                Log.d("어뎁터왔나", String.valueOf(read.adapter.getItemCount()));//어뎁터에 세팅은 완료
+
+                Log.d("어뎁터왔나", String.valueOf(read.a1.getItemCount()));//어뎁터에 세팅은 완료
 
             }
         }, 1000);
+
+        //Log.d("어뎁터왔나", read.showResult().);//어뎁터에 세팅은 완료
+
+
 
 
         textView_month.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
@@ -158,6 +167,14 @@ public class home extends Fragment {
             public void onDayClick(Date dateClicked) {
                 Log.d(TAG, "태그 dateClicked : " + dateClicked);
                 List<Event> events = compactCalendarView.getEvents(dateClicked);
+                SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+                String clickDate = simpleDate.format(dateClicked);
+
+                read.to_list.clear();
+                read.showResult(clickDate);
+                //read.adapter.setCdate(clickDate,true);
+                //read.adapter.notifyDataSetChanged();
+
 
                 // 해당날짜에 이벤트가 있으면
                 if (events.size() > 0) {
@@ -165,9 +182,6 @@ public class home extends Fragment {
                 }
                 // 해당날짜에 이벤트가 없으면
                 else {
-                    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-                    String clickDate = simpleDate.format(dateClicked);
-
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     AlertDialog dialog = builder.setTitle("일정추가하기")

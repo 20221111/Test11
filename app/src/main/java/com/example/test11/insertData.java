@@ -47,11 +47,28 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         if (result == null) {
             mTextViewResult.setText(errorString);
-        } else {
+        }
+
+        else {
 
             Result = result;
             Log.d("데이터소통", result);
-            showResult();
+
+            if(Result.contains("id")){//아이디찾기
+                //showResult2();
+            }
+
+            else if(Result.contains("password")){//비번찾기
+                //showResult3();
+            }
+
+            else if(Result.contains("error")){//에러의 경우
+                //읽을 필요 없음
+            }
+
+            else{
+                showResult();
+            }
 
         }
 
@@ -194,8 +211,26 @@ public class insertData extends AsyncTask<String, Void, String> {
 
     private void showResult2() throws JSONException {
 
+        String TAG_JSON = "id";
+
+        try {
+            JSONObject jsonObject = new JSONObject(Result);
+            //JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            String findid=jsonObject.getString(TAG_JSON);
+            Log.d("아이디찾기: ", findid);
 
 
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
     }
     private void showResult3() throws JSONException {
 

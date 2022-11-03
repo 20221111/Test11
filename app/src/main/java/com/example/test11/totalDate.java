@@ -1,10 +1,10 @@
 package com.example.test11;
 
-public class commMain {
+public class totalDate {
     String title;
     String meeting_DATE;
     String meeting_TIME;
-    String committee_NAME=" ";
+    String committee_NAME = " ";
 
     public String getCommittee_NAME() {
         return committee_NAME;
@@ -36,9 +36,7 @@ public class commMain {
     }
 
     public void setMeeting_TIME(String meeting_TIME) {
-        this.meeting_TIME= meeting_TIME;
+        this.meeting_TIME = meeting_TIME;
     }
-
-
 
 }

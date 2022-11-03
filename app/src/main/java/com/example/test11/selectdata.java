@@ -15,9 +15,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class selectdata extends AsyncTask<String, Void, String> {
+
+    //public Collection<String> cs_List;
     //        ProgressDialog progressDialog;
     String errorString = null;
     private ArrayList<String> wishlist_drug;
@@ -25,14 +31,20 @@ public class selectdata extends AsyncTask<String, Void, String> {
     private String postParameters;
     String searchText;
     private TextView mTextViewResult;
-    //ArrayList<bonsche> bonsche_list;
-    //ArrayList<commKong> ck_list;
-    //ArrayList<commMain> cm_list;
-    //ArrayList<commSmall> cs_list;
-        // adapter 생성
-    ArrayList<commMain> cm_list = new ArrayList<>();
-    RecyclerView recyclerview;
-    Adapter adapter = new Adapter(cm_list);
+    ArrayList<bonsche> bonsche_list=new ArrayList<>();
+    ArrayList<commKong> ck_list=new ArrayList<>();
+    ArrayList<commMain> cm_list=new ArrayList<>();
+    ArrayList<commSmall> cs_list=new ArrayList<>();
+    ArrayList<totalInfo> ti_list = new ArrayList<>();
+    ArrayList<totalDate> td_list = new ArrayList<>();
+    ArrayList<totalDate> to_list = new ArrayList<>();
+    //RecyclerView recyclerview;
+    //Adapter adapter = new Adapter(td_list);
+    Adapter1 a1=new Adapter1(to_list);
+
+    //List<Object> mergedList = new ArrayList<>();
+
+
 
 
     @Override
@@ -49,6 +61,10 @@ public class selectdata extends AsyncTask<String, Void, String> {
         super.onPostExecute(result);
 
 //            progressDialog.dismiss();
+        long mNow=System.currentTimeMillis();
+        Date mDate=new Date(mNow);
+        SimpleDateFormat mFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String searchText=mFormat.format(mDate);
 
         if (result == null) {
             mTextViewResult.setText(errorString);
@@ -56,7 +72,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
             mJsonString = result;
             Log.d("데이터소통", result);
-            showResult(0);
+            showResult(searchText);
 
 
         }
@@ -135,7 +151,201 @@ public class selectdata extends AsyncTask<String, Void, String> {
         }
     }
 
-    private void showResult(int num) {
+    public void showResult(String searchText) {
+
+        String TAG_JSON2 = "commKong";
+        String TAG_JSON1 = "bonsche";
+        String TAG_JSON3 = "commMain";
+        String TAG_JSON4 = "commSmall";
+        String TAG_DATE = "meeting_DATE";
+        String TAG_TIME = "meeting_TIME";
+        String TAG_TITLE = "title";;
+        String TAG_CMANE = "committee_NAME";
+
+
+
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON1);
+            JSONArray jsonArray1 = jsonObject.getJSONArray(TAG_JSON2);
+            JSONArray jsonArray2 = jsonObject.getJSONArray(TAG_JSON3);
+            JSONArray jsonArray3 = jsonObject.getJSONArray(TAG_JSON4);
+            //totalDate td=new totalDate();
+
+            for (int i = 0; i < jsonArray.length(); i++) { //본회의
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+
+                //이부분 생성자 선언
+                bonsche bc=new bonsche();
+                totalDate td=new totalDate();
+
+                //생성자 세팅
+
+                //bc.meetingsession=session;
+                bc.title=title;
+                bc.meeting_DATE=date;
+                bc.meeting_TIME=time;
+
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=" ";
+
+                bonsche_list.add(bc);
+                if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                    to_list.add(td);
+                }
+                //to_list.add(td);
+                /*adapter.setCm_List(td);
+                adapter.notifyDataSetChanged();*/
+
+
+
+
+            }
+
+            for (int i = 0; i < jsonArray1.length(); i++) {//공청회
+
+                JSONObject item = jsonArray1.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+                String dept=item.getString(TAG_CMANE);
+                //이부분 생성자 선언
+                commKong ck=new commKong();
+                totalDate td=new totalDate();
+
+                //생성자 세팅
+                ck.title=title;
+                ck.meeting_TIME=time;
+                ck.meeting_DATE=date;
+                ck.committee_NAME=dept;
+
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=" ";
+
+                ck_list.add(ck);
+                if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                    to_list.add(td);
+                }
+                /*adapter.setCm_List(td);
+                adapter.notifyDataSetChanged();*/
+                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
+                /*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*/
+
+
+            }
+
+            for (int i = 0; i < jsonArray2.length(); i++) {//위원회별본
+
+                JSONObject item = jsonArray2.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+                String dept=item.getString(TAG_CMANE);
+
+                //이부분 생성자 선언
+                commMain cm=new commMain();
+                totalDate td=new totalDate();
+
+                //생성자 세팅
+
+                cm.title=title;
+                cm.meeting_TIME=time;
+                cm.meeting_DATE=date;
+                cm.committee_NAME=dept;
+
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=" ";
+
+                /*adapter.setCm_List(td);
+                adapter.notifyDataSetChanged();*/
+                if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                    to_list.add(td);
+                }
+                //cm_list.add(cm);
+                //Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
+
+
+
+                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
+                /*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*/
+
+
+            }
+
+            for (int i = 0; i < jsonArray3.length(); i++) {//소회의
+
+                JSONObject item = jsonArray3.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+                String dept=item.getString(TAG_CMANE);
+                //이부분 생성자 선언
+                commSmall cs=new commSmall();
+                totalDate td=new totalDate();
+
+                //생성자 세팅
+                cs.title=title;
+                cs.meeting_TIME=time;
+                cs.meeting_DATE=date;
+                cs.committee_NAME=dept;
+
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=dept;
+
+                //cs_list.add(cs);
+                if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                    to_list.add(td);
+                }
+                /*adapter.setCm_List(td);
+                adapter.notifyDataSetChanged();*/
+
+
+                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
+                /*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*/
+
+
+            }
+
+
+            a1.setCm_List(to_list);
+            a1.notifyDataSetChanged();
+            Log.d("어뎁터a1", String.valueOf(a1.getItemCount()));//어뎁터에 세팅은 완료
+
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
+
+    }
+
+   /* private void showResult2(int num) {
 
         String TAG_JSON2 = "commKong";
         String TAG_JSON1 = "bonsche";
@@ -179,20 +389,20 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 bonsche bc=new bonsche();
 
                 //생성자 세팅
-                //예)drugData.setDrugName(name);
-                bc.setCha(cha);
-                bc.setLink_URL(url);
-                bc.setMeeting_DATE(date);
-                bc.setMeeting_TIME(time);
-                bc.setTitle(title);
-                bc.setMeetingsessioness(session);
-                bc.setUnit_CD(cd);
-                bc.setUnit_NM(nm);
 
+                //bc.meetingsession=session;
+                bc.title=title;
+                //bc.cha=cha;
+                //bc.unit_CD=cd;
+                //bc.unit_NM=nm;
+                bc.meeting_DATE=date;
+                bc.meeting_TIME=time;
+                //bc.link_URL=url;
 
+                bonsche_list.add(bc);
                 //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
-                /*adapter.setArrayData(drugData);
-                adapter.notifyDataSetChanged();*/
+                *//*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*//*
 
 
             }
@@ -213,19 +423,21 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 commKong ck=new commKong();
 
                 //생성자 세팅
-                ck.setLink_URL2(url2);
-                ck.setMeeting_DATE(date);
-                ck.setMeeting_TIME(time);
-                ck.setTitle(title);
-                ck.setSess(session);
-                ck.setUnit_CD(cd);
-                ck.setUnit_NM(nm);
-                ck.setHr_DEPT_CD(dept);
+                ck.title=title;
+                ck.sess=session;
+                ck.meeting_TIME=time;
+                ck.unit_CD=cd;
+                ck.unit_NM=nm;
+                ck.meeting_DATE=date;
+                ck.hr_DEPT_CD=dept;
+                ck.link_URL2=url2;
+
+                ck_list.add(ck);
 
 
                 //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
-                /*adapter.setArrayData(drugData);
-                adapter.notifyDataSetChanged();*/
+                *//*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*//*
 
 
             }
@@ -246,14 +458,14 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 commMain cm=new commMain();
 
                 //생성자 세팅
-                /*cm.setLink_URL2(url2);
+                *//*cm.setLink_URL2(url2);
                 cm.setMeeting_DATE(date);
                 cm.setMeeting_TIME(time);
                 cm.setTitle(title);
                 cm.setSess(session);
                 cm.setUnit_CD(cd);
                 cm.setUnit_NM(nm);
-                cm.setHr_DEPT_CD(dept);*/
+                cm.setHr_DEPT_CD(dept);*//*
 
                 cm.title=title;
                 cm.sess=session;
@@ -266,13 +478,14 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 adapter.setCm_List(cm);
                 adapter.notifyDataSetChanged();
+                cm_list.add(cm);
                 Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
 
 
 
                 //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
-                /*adapter.setArrayData(drugData);
-                adapter.notifyDataSetChanged();*/
+                *//*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*//*
 
 
             }
@@ -293,22 +506,27 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 commSmall cs=new commSmall();
 
                 //생성자 세팅
-                cs.setLink_URL2(url2);
-                cs.setMeeting_DATE(date);
-                cs.setMeeting_TIME(time);
-                cs.setTitle(title);
-                cs.setSess(session);
-                cs.setUnit_CD(cd);
-                cs.setUnit_NM(nm);
-                cs.setHr_DEPT_CD(dept);
+                cs.title=title;
+                cs.sess=session;
+                cs.meeting_TIME=time;
+                cs.unit_CD=cd;
+                cs.unit_NM=nm;
+                cs.meeting_DATE=date;
+                cs.hr_DEPT_CD=dept;
+                cs.link_URL2=url2;
+
+                cs_list.add(cs);
 
 
                 //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
-                /*adapter.setArrayData(drugData);
-                adapter.notifyDataSetChanged();*/
+                *//*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*//*
 
 
             }
+
+            a1.setCm_List();
+            a1.notifyDataSetChanged();
 
 
 
@@ -323,13 +541,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
         }
 
-    }
-
-    private void showResult2() throws JSONException {
-
-
-
-    }
+    }*/
     private void showResult3() throws JSONException {
 
     }
