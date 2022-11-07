@@ -127,7 +127,7 @@ public class home extends Fragment implements View.OnClickListener {
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview.setLayoutManager(linearLayoutManager);
         // recyclerview에 adapter 적용
-        recyclerview.setAdapter(read.a1); //selectData에서 add해도 성ㄷ공
+        recyclerview.setAdapter(read.a1); //selectData에서 add해도 성공
         read.a1.notifyDataSetChanged();
 
 

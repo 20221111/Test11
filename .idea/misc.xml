@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/background.xml" value="0.2175" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/date.xml" value="0.259" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/forgotpassword.xml" value="0.155" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/home.xml" value="0.155" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/today.xml" value="0.259" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/popup.xml" value="0.1" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/recycler_view.xml" value="0.1" />
       </map>

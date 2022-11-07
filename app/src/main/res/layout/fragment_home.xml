@@ -17,28 +17,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/date"
-                android:layout_width="71dp"
-                android:layout_height="74dp"
+                android:layout_width="84dp"
+                android:layout_height="76dp"
                 android:background="@drawable/date"
-                android:gravity="center"
-                android:text="날짜"
-                android:textAlignment="center"
-                android:textColor="#FF000000" />
+                android:text="" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/today"
-                android:layout_width="340dp"
-                android:layout_height="62dp"
+                android:layout_width="326dp"
+                android:layout_height="63dp"
                 android:background="@drawable/today"
-                android:gravity="center"
-                android:text="(오늘 일정)"
-                android:textAlignment="center"
-                android:textColor="#FF000000"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
 
@@ -57,7 +51,8 @@
             android:id="@+id/test"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/icon_filter" />
+            android:background="@drawable/icon_filter"
+            />
 
         <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/compactcalendar_view"
@@ -86,14 +81,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listView_result"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="#D3D3D3"
             android:gravity="center"
             android:text="클릭한 날짜 정보"
             android:textAlignment="center"
-            android:textColor="#050505"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:textColor="#050505" />
 
     </LinearLayout>
 
