@@ -80,6 +80,7 @@ public class home extends Fragment implements View.OnClickListener {
 
                                               final AlertDialog alertDialog = builder.create();
                                               alertDialog.show();
+
                                               //확인버튼
                                               Button btnInsert = popupView.findViewById(R.id.ok);
                                               btnInsert.setOnClickListener(new Button.OnClickListener(){
@@ -89,7 +90,8 @@ public class home extends Fragment implements View.OnClickListener {
                                                        */
                                                   }
                                               });
-                                                //취소버튼
+
+                                              //취소버튼
                                               Button btnCancel = popupView.findViewById(R.id.cancel);
                                               btnCancel.setOnClickListener(new Button.OnClickListener(){
                                                   public void onClick(View v){
