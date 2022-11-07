@@ -22,7 +22,7 @@ public class Login extends AppCompatActivity {
         cm_List = new ArrayList<>();
         
         //String id = null;
-        setContentView(R.layout.fragment_home);
+        setContentView(R.layout.login);
 
         joinmember jm=new joinmember();
         insertData insert = new insertData(); //로그인 가동

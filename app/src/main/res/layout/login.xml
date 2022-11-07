@@ -7,9 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/DeepBlue"
-
-    tools:context=".MainActivity">
-
+    tools:context=".Login">
 
     <ImageView
         android:id="@+id/imageView"
