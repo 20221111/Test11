@@ -9,11 +9,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="410dp"
-        android:layout_height="576dp"
+        android:layout_width="407dp"
+        android:layout_height="602dp"
         android:background="@drawable/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
@@ -28,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764"
+        app:layout_constraintVertical_bias="0.791"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -41,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494"
+        app:layout_constraintVertical_bias="0.492"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -52,10 +53,10 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289"
+        app:layout_constraintVertical_bias="0.283"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -68,7 +69,7 @@
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.472"
+        app:layout_constraintVertical_bias="0.495"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -82,7 +83,7 @@
         app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42"
+        app:layout_constraintVertical_bias="0.43"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -95,7 +96,7 @@
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.605"
+        app:layout_constraintVertical_bias="0.652"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -109,7 +110,7 @@
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548"
+        app:layout_constraintVertical_bias="0.584"
         tools:ignore="MissingConstraints" />
 
     <TextView
