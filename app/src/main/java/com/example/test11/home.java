@@ -58,6 +58,7 @@ public class home extends Fragment implements View.OnClickListener {
     private SimpleDateFormat dateFormatForDisplaying = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("yyyy년 MM월", Locale.KOREA);
     private SimpleDateFormat dateFormatForMonth2 = new SimpleDateFormat("yyyy-MM", Locale.KOREA);
+    SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 
     public String searchText;
     selectdata read1;
@@ -148,11 +149,52 @@ public class home extends Fragment implements View.OnClickListener {
 
 
                 Log.d("어뎁터왔나", String.valueOf(read.a1.getItemCount()));//어뎁터에 세팅은 완료
+                selectdata st =new selectdata();
+
+                Date currentDay = null;
+                String data;
+                //Log.d("날짜확인", String.valueOf(read.ti_list.size()));
+                try {
+                    // .parse 함수 : Parses text from a string to produce a Date (문자열에서 텍스트를 분석하여 날짜 생성)
+                    for(int i=0;i<read.ti_list.size();i++){
+                        currentDay = simpleDate.parse(read.ti_list.get(i).getMeeting_DATE());
+                        //Log.d("날짜확인", read.ti_list.get(i).getMeeting_DATE());
+                        Long currentLong = currentDay.getTime();
+                        if(read.ti_list.get(i).getType().equals("bonsche")){
+                            Event ev2 = new Event(Color.RED, currentLong,read.ti_list.get(i).getTitle());
+                            compactCalendarView.addEvent(ev2);
+                        }
+                        else if(read.ti_list.get(i).getType().equals("commKong")){
+                            Event ev3 = new Event(Color.LTGRAY, currentLong,read.ti_list.get(i).getTitle());
+                            compactCalendarView.addEvent(ev3);
+                        }
+                        else if(read.ti_list.get(i).getType().equals("commMain")){
+                            Event ev4 = new Event(Color.BLACK, currentLong,read.ti_list.get(i).getTitle());
+                            compactCalendarView.addEvent(ev4);
+                        }
+                        else if(read.ti_list.get(i).getType().equals("commSmall")){
+                            Event ev5 = new Event(Color.CYAN, currentLong,read.ti_list.get(i).getTitle());
+                            compactCalendarView.addEvent(ev5);
+                        }
+
+                    }
+
+                    Log.d(TAG, "태그 currentDay : " + currentDay);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
             }
         }, 1000);
 
         //Log.d("어뎁터왔나", read.showResult().);//어뎁터에 세팅은 완료
+
+        //이벤트 점 표시
+
+
+
+
 
 
 
@@ -167,7 +209,7 @@ public class home extends Fragment implements View.OnClickListener {
                 String[] getDate2 = getDate.split(":");
                 String getDateST = getDate2[0];
                 Log.d(TAG, "태그 getDateST : " + getDateST);
-                SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 AlertDialog dialog = builder.setTitle("일정을 삭제하겠습니까?")
@@ -229,17 +271,6 @@ public class home extends Fragment implements View.OnClickListener {
 
                 }
 
-                /*if(scroll=false){
-                    read.to_list.clear();
-                    read.showResult(clickDate);
-                }
-
-                else if(scroll=true){
-                    read1.to_list.clear();
-                    read1.showResult(clickDate);
-                }*/
-
-
 
                 //read.adapter.setCdate(clickDate,true);
                 //read.adapter.notifyDataSetChanged();
@@ -287,6 +318,7 @@ public class home extends Fragment implements View.OnClickListener {
                                                     Log.d(TAG, "태그 currentLong : " + currentLong);
 
                                                     Event ev1 = new Event(Color.GREEN, currentLong, clickDate + " : " + editText.getText().toString());
+                                                    //Event ev2 = new Event(Color.GREEN, currentLong, clickDate + " : " + editText.getText().toString());
                                                     compactCalendarView.addEvent(ev1);
                                                     //textView_result.setText(clickDate + " : " + editText.getText().toString());
                                                     Toast.makeText(getActivity(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
@@ -332,6 +364,50 @@ public class home extends Fragment implements View.OnClickListener {
                 read1.executeOnExecutor(THREAD_POOL,"http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
                 recyclerview.setAdapter(read1.a1); //selectData에서 add해도 성ㄷ공
                 read1.a1.notifyDataSetChanged();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {//버그있음 리스트 안 비워짐 -> 비워야함
+                        //Log.d("어뎁터왔나", String.valueOf(read1.a1.getItemCount()));//어뎁터에 세팅은 완료
+                        //selectdata st =new selectdata();
+
+                        Date currentDay = null;
+                        String data;
+                        Log.d("날짜확인", String.valueOf(read1.ti_list.size()));
+                        try {
+                            // .parse 함수 : Parses text from a string to produce a Date (문자열에서 텍스트를 분석하여 날짜 생성)
+                            for(int i=0;i<read1.ti_list.size();i++){
+                                currentDay = simpleDate.parse(read1.ti_list.get(i).getMeeting_DATE());
+                                //Log.d("날짜확인", read1.ti_list.get(i).getMeeting_DATE());
+                                Long currentLong = currentDay.getTime();
+                                if(read1.ti_list.get(i).getType().equals("bonsche")){
+                                    Event ev2 = new Event(Color.RED, currentLong,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev2);
+                                }
+                                else if(read1.ti_list.get(i).getType().equals("commKong")){
+                                    Event ev3 = new Event(Color.LTGRAY, currentLong,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev3);
+                                }
+                                else if(read1.ti_list.get(i).getType().equals("commMain")){
+                                    Event ev4 = new Event(Color.BLACK, currentLong,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev4);
+                                }
+                                else if(read1.ti_list.get(i).getType().equals("commSmall")){
+                                    Event ev5 = new Event(Color.CYAN, currentLong,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev5);
+                                }
+
+                            }
+
+                            Log.d(TAG, "태그 currentDay : " + currentDay);
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, 1000);
+
             }
         });
         return v;

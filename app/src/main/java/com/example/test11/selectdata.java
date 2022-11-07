@@ -41,6 +41,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
     //RecyclerView recyclerview;
     //Adapter adapter = new Adapter(td_list);
     Adapter1 a1=new Adapter1(to_list);
+    SetDotlist dl=new SetDotlist(ti_list);
 
     //List<Object> mergedList = new ArrayList<>();
 
@@ -181,15 +182,16 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 String title = item.getString(TAG_TITLE);
 
                 //이부분 생성자 선언
-                bonsche bc=new bonsche();
+                totalInfo ti=new totalInfo();
                 totalDate td=new totalDate();
 
                 //생성자 세팅
 
                 //bc.meetingsession=session;
-                bc.title=title;
-                bc.meeting_DATE=date;
-                bc.meeting_TIME=time;
+                ti.type=TAG_JSON1;
+                ti.title=title;
+                ti.meeting_DATE=date;
+                ti.meeting_TIME=time;
 
                 td.type=TAG_JSON1;
                 td.title=title;
@@ -197,7 +199,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 td.meeting_TIME=time;
                 td.committee_NAME=" ";
 
-                bonsche_list.add(bc);
+                ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
                     to_list.add(td);
                 }
@@ -219,14 +221,14 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 String title = item.getString(TAG_TITLE);
                 String dept=item.getString(TAG_CMANE);
                 //이부분 생성자 선언
-                commKong ck=new commKong();
+                totalInfo ti=new totalInfo();
                 totalDate td=new totalDate();
 
                 //생성자 세팅
-                ck.title=title;
-                ck.meeting_TIME=time;
-                ck.meeting_DATE=date;
-                ck.committee_NAME=dept;
+                ti.type=TAG_JSON2;
+                ti.title=title;
+                ti.meeting_DATE=date;
+                ti.meeting_TIME=time;
 
                 td.type=TAG_JSON2;
                 td.title=title;
@@ -234,7 +236,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 td.meeting_TIME=time;
                 td.committee_NAME=" ";
 
-                ck_list.add(ck);
+                ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
                     to_list.add(td);
                 }
@@ -257,15 +259,15 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 String dept=item.getString(TAG_CMANE);
 
                 //이부분 생성자 선언
-                commMain cm=new commMain();
+                totalInfo ti=new totalInfo();
                 totalDate td=new totalDate();
 
                 //생성자 세팅
 
-                cm.title=title;
-                cm.meeting_TIME=time;
-                cm.meeting_DATE=date;
-                cm.committee_NAME=dept;
+                ti.type=TAG_JSON3;
+                ti.title=title;
+                ti.meeting_DATE=date;
+                ti.meeting_TIME=time;
 
                 td.type=TAG_JSON3;
                 td.title=title;
@@ -273,8 +275,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 td.meeting_TIME=time;
                 td.committee_NAME=" ";
 
-                /*adapter.setCm_List(td);
-                adapter.notifyDataSetChanged();*/
+                ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
                     to_list.add(td);
                 }
@@ -299,14 +300,14 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 String title = item.getString(TAG_TITLE);
                 String dept=item.getString(TAG_CMANE);
                 //이부분 생성자 선언
-                commSmall cs=new commSmall();
+                totalInfo ti=new totalInfo();
                 totalDate td=new totalDate();
 
                 //생성자 세팅
-                cs.title=title;
-                cs.meeting_TIME=time;
-                cs.meeting_DATE=date;
-                cs.committee_NAME=dept;
+                ti.type=TAG_JSON4;
+                ti.title=title;
+                ti.meeting_DATE=date;
+                ti.meeting_TIME=time;
 
                 td.type=TAG_JSON4;
                 td.title=title;
@@ -314,7 +315,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 td.meeting_TIME=time;
                 td.committee_NAME=dept;
 
-                //cs_list.add(cs);
+                ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
                     to_list.add(td);
                 }
