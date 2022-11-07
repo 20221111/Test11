@@ -40,10 +40,10 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
         holder.title.setText(tt_List.get(position).getTitle());
         holder.date.setText(tt_List.get(position).getMeeting_DATE());
         holder.time.setText(tt_List.get(position).getMeeting_TIME());
-        /*holder.date.setOnClickListener(new View.OnClickListener(){
+        holder.date.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                FragmentManager fm = ((FragmentActivity) view.getContext()).getSupportFragmentManager();
+                /*FragmentManager fm = ((FragmentActivity) view.getContext()).getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction;
                 DruginfoActivity fragmentDruginfo = new DruginfoActivity();
 //                DrugItem drugItem = new DrugItem();
@@ -52,9 +52,10 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
                 bundle.putInt("position", position);
                 fragmentDruginfo.setArguments(bundle);
                 fragmentTransaction = fm.beginTransaction().add(R.id.menu_frame_layout, fragmentDruginfo);
-                fragmentTransaction.addToBackStack(null).commit();
+                fragmentTransaction.addToBackStack(null).commit();*/
+
             }
-        });*/
+        });
     }
     @Override
     public int getItemCount() {

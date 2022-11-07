@@ -1,5 +1,6 @@
 package com.example.test11;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -45,7 +46,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 //외부에서 new Frag1 호출 시
@@ -58,6 +60,7 @@ public class home extends Fragment implements View.OnClickListener {
     private SimpleDateFormat dateFormatForMonth2 = new SimpleDateFormat("yyyy-MM", Locale.KOREA);
 
     public String searchText;
+    selectdata read1;
 
     @Nullable
     @Override
@@ -103,6 +106,7 @@ public class home extends Fragment implements View.OnClickListener {
         TextView textView_result = (TextView) v.findViewById(R.id.textView_result2);
 
 
+
         ArrayList<commMain> cm_List;
 
         long mNow;
@@ -111,10 +115,12 @@ public class home extends Fragment implements View.OnClickListener {
         mNow=System.currentTimeMillis();
         mDate=new Date(mNow);
         searchText=mFormat.format(mDate);
+        textView_result.setText(searchText);
         joinmember jm=new joinmember();
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
 
         selectdata read = new selectdata();
+
         read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
 
         cm_List = new ArrayList<>();
@@ -204,9 +210,13 @@ public class home extends Fragment implements View.OnClickListener {
                 List<Event> events = compactCalendarView.getEvents(dateClicked);
                 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
                 String clickDate = simpleDate.format(dateClicked);
+                textView_result.setText(clickDate);
 
                 read.to_list.clear();
                 read.showResult(clickDate);
+                read1.to_list.clear();
+                read1.showResult(clickDate);
+
                 //read.adapter.setCdate(clickDate,true);
                 //read.adapter.notifyDataSetChanged();
 
@@ -286,8 +296,17 @@ public class home extends Fragment implements View.OnClickListener {
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 textView_month.setText(dateFormatForMonth.format(firstDayOfNewMonth));
-                Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
+                Log.d(TAG, "달력 이전으로 넘어가는거임?: " + firstDayOfNewMonth);
+                //selectdata read1 = new selectdata();
+                searchText=mFormat.format(firstDayOfNewMonth);
+                //read.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
 
+
+                ExecutorService THREAD_POOL= Executors.newFixedThreadPool(12);
+                read1=new selectdata();
+                read1.executeOnExecutor(THREAD_POOL,"http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
+                recyclerview.setAdapter(read1.a1); //selectData에서 add해도 성ㄷ공
+                read1.a1.notifyDataSetChanged();
             }
         });
         return v;
