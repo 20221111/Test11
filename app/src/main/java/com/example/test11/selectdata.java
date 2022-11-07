@@ -171,7 +171,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
             JSONArray jsonArray2 = jsonObject.getJSONArray(TAG_JSON3);
             JSONArray jsonArray3 = jsonObject.getJSONArray(TAG_JSON4);
             //totalDate td=new totalDate();
-
+            //to_list.clear();
             for (int i = 0; i < jsonArray.length(); i++) { //본회의
 
                 JSONObject item = jsonArray.getJSONObject(i);

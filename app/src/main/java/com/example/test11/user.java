@@ -24,7 +24,6 @@ public class user extends Fragment {
             @Override
             public void onClick(View view) {
 
-
             }
         });
     return v;

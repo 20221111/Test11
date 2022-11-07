@@ -118,6 +118,7 @@ public class home extends Fragment implements View.OnClickListener {
         mNow=System.currentTimeMillis();
         mDate=new Date(mNow);
         searchText=mFormat.format(mDate);
+        read1=new selectdata();
         textView_result.setText(searchText);
         joinmember jm=new joinmember();
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
@@ -215,12 +216,29 @@ public class home extends Fragment implements View.OnClickListener {
                 String clickDate = simpleDate.format(dateClicked);
                 textView_result.setText(clickDate);
 
-                read.to_list.clear();
-                read.showResult(clickDate);
-                if(scroll=true){
+                Log.d("과연", String.valueOf(scroll));
+
+                switch (String.valueOf(scroll)){
+                    case "true":
+                        read1.to_list.clear();
+                        read1.showResult(clickDate);
+                        break;
+                    case "false":
+                        read.to_list.clear();
+                        read.showResult(clickDate);
+
+                }
+
+                /*if(scroll=false){
+                    read.to_list.clear();
+                    read.showResult(clickDate);
+                }
+
+                else if(scroll=true){
                     read1.to_list.clear();
                     read1.showResult(clickDate);
-                }
+                }*/
+
 
 
                 //read.adapter.setCdate(clickDate,true);
