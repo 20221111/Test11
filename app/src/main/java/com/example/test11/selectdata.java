@@ -191,6 +191,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 bc.meeting_DATE=date;
                 bc.meeting_TIME=time;
 
+                td.type=TAG_JSON1;
                 td.title=title;
                 td.meeting_DATE=date;
                 td.meeting_TIME=time;
@@ -227,6 +228,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 ck.meeting_DATE=date;
                 ck.committee_NAME=dept;
 
+                td.type=TAG_JSON2;
                 td.title=title;
                 td.meeting_DATE=date;
                 td.meeting_TIME=time;
@@ -265,6 +267,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 cm.meeting_DATE=date;
                 cm.committee_NAME=dept;
 
+                td.type=TAG_JSON3;
                 td.title=title;
                 td.meeting_DATE=date;
                 td.meeting_TIME=time;
@@ -305,6 +308,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
                 cs.meeting_DATE=date;
                 cs.committee_NAME=dept;
 
+                td.type=TAG_JSON4;
                 td.title=title;
                 td.meeting_DATE=date;
                 td.meeting_TIME=time;

@@ -61,6 +61,7 @@ public class home extends Fragment implements View.OnClickListener {
 
     public String searchText;
     selectdata read1;
+    boolean scroll=false;
 
     @Nullable
     @Override
@@ -214,8 +215,11 @@ public class home extends Fragment implements View.OnClickListener {
 
                 read.to_list.clear();
                 read.showResult(clickDate);
-                read1.to_list.clear();
-                read1.showResult(clickDate);
+                if(scroll=true){
+                    read1.to_list.clear();
+                    read1.showResult(clickDate);
+                }
+
 
                 //read.adapter.setCdate(clickDate,true);
                 //read.adapter.notifyDataSetChanged();
@@ -295,6 +299,7 @@ public class home extends Fragment implements View.OnClickListener {
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
+                scroll=true;
                 textView_month.setText(dateFormatForMonth.format(firstDayOfNewMonth));
                 Log.d(TAG, "달력 이전으로 넘어가는거임?: " + firstDayOfNewMonth);
                 //selectdata read1 = new selectdata();
