@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class LoadingActivity extends Activity {
     @Override
@@ -13,6 +16,10 @@ public class LoadingActivity extends Activity {
         startLoading();
     }
     private void startLoading() {
+
+        ImageView logo = (ImageView) findViewById(R.id.logo);
+        Glide.with(this).load(R.drawable.logo).into(logo);
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
