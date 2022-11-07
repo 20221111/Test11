@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), Create_Account.class);
                 startActivity(intent);
-                setAlarm();
+                //setAlarm();
             }
         });
         //ForgotPassword 클릭시 forgotpassword 페이지로 이동
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setAlarm() {
-        //AlarmReceiver에 값 전달
+    /*private void setAlarm() {
+        AlarmReceiver에 값 전달
         Intent receiverIntent = new Intent(MainActivity.this, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, receiverIntent, 0);
 
@@ -115,5 +115,5 @@ public class MainActivity extends AppCompatActivity {
         alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
 
 
-    }
+    }*/
 }
