@@ -1,5 +1,6 @@
 package com.example.test11;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,10 +18,16 @@ public class user extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.fragment_user,container,false);
+        View v = inflater.inflate(R.layout.fragment_user, container, false);
+        ImageButton subs = v.findViewById(R.id.usersub);
+        subs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
 
-        return v;
+            }
+        });
+    return v;
     }
 
 }

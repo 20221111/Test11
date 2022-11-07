@@ -17,10 +17,9 @@ public class Login extends AppCompatActivity {
 
     ArrayList<commMain> cm_List;
     @Override
-    protected void onCreate (@Nullable Bundle savedInstanceState) {
+    public void onCreate (@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cm_List = new ArrayList<>();
-        
         //String id = null;
         setContentView(R.layout.login);
 

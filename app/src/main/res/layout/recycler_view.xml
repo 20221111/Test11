@@ -7,18 +7,21 @@
     <TextView
         android:id="@+id/textView3"
         style="@style/recyclerview_contents"
+        android:layout_width="87dp"
         android:text="타이틀" />
-
-
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/recyclerview_contents"
-        android:text="날짜" />
 
     <TextView
         android:id="@+id/textView1"
         style="@style/recyclerview_contents"
+        android:layout_width="228dp"
         android:text="시간" />
+
+    <Button
+        android:id="@+id/sub1"
+        android:layout_width="30dp"
+        android:layout_height="21dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/resize_star" />
 
 
 </LinearLayout>

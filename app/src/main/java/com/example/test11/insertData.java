@@ -27,6 +27,7 @@ public class insertData extends AsyncTask<String, Void, String> {
     String[] forgot_Id={"email","name"};
     String[] forgot_pw={"id","security"};
     String[] login={"id","password"};
+    String[] subs={"date","id","title","type"};
     String searchText;
     private TextView mTextViewResult;
     Boolean loginresult;
@@ -62,7 +63,7 @@ public class insertData extends AsyncTask<String, Void, String> {
                 //showResult3();
             }
 
-            else if(Result.contains("error")){//에러의 경우
+            else if(Result.contains("err")){//에러의 경우
                 //읽을 필요 없음
             }
 
@@ -108,6 +109,12 @@ public class insertData extends AsyncTask<String, Void, String> {
             login[1]="&password="+pw;
         }
 
+        else if(params[1]=="4"){//일정구독
+            subs[0]="date="+em;
+            subs[1]="&id="+name;
+            subs[1]="&title="+name;
+        }
+
 
         try {
 
@@ -149,6 +156,10 @@ public class insertData extends AsyncTask<String, Void, String> {
                     Log.d("과연", login[i]);
                 }
 
+            }
+
+            else{
+                //outputStream.write();
             }
 
             outputStream.flush();
