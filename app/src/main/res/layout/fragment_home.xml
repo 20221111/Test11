@@ -6,35 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".home">
 
-
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="84dp"
-                android:layout_height="76dp"
-                android:background="@drawable/date"
-                android:text="" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/today"
-                android:layout_width="326dp"
-                android:layout_height="63dp"
-                android:background="@drawable/today"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/textView_month"
@@ -68,7 +45,6 @@
             app:compactCalendarTextColor="#FF000000"
             app:compactCalendarTextSize="12sp" />
 
-
         <TextView
             android:id="@+id/textView_result2"
             android:layout_width="match_parent"
@@ -91,6 +67,5 @@
             android:textColor="#050505" />
 
     </LinearLayout>
-
 
 </FrameLayout>

@@ -1,10 +1,19 @@
 package com.example.test11;
 
 public class totalDate {
+    String type;
     String title;
     String meeting_DATE;
     String meeting_TIME;
     String committee_NAME = " ";
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getCommittee_NAME() {
         return committee_NAME;

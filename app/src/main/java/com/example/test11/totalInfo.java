@@ -1,6 +1,7 @@
 package com.example.test11;
 
 public class totalInfo {
+    String type;
     String sess;
     String committee_NAME;
     String title;
@@ -10,6 +11,14 @@ public class totalInfo {
     String meeting_DATE;
     String hr_DEPT_CD;
     String link_URL2;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getSess() {
         return sess;

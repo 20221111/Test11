@@ -96,7 +96,7 @@
             app:layout_constraintVertical_bias="0.893" />
 
         <ImageButton
-            android:id="@+id/imageButton7"
+            android:id="@+id/usersub"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/icon_calendar"
@@ -120,7 +120,7 @@
             app:layout_constraintVertical_bias="0.497" />
 
         <ImageButton
-            android:id="@+id/imageButton6"
+            android:id="@+id/setting"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/icon_setting"
@@ -156,7 +156,7 @@
             app:layout_constraintVertical_bias="0.497" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/memo"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/icon_memo"
