@@ -28,7 +28,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
     String errorString = null;
     private ArrayList<String> wishlist_drug;
     private String mJsonString;
-    private String postParameters;
+    int postParameters;
     String searchText;
     private TextView mTextViewResult;
     ArrayList<bonsche> bonsche_list=new ArrayList<>();
@@ -38,10 +38,12 @@ public class selectdata extends AsyncTask<String, Void, String> {
     ArrayList<totalInfo> ti_list = new ArrayList<>();
     ArrayList<totalDate> td_list = new ArrayList<>();
     ArrayList<totalDate> to_list = new ArrayList<>();
+
     //RecyclerView recyclerview;
     //Adapter adapter = new Adapter(td_list);
     Adapter1 a1=new Adapter1(to_list);
     SetDotlist dl=new SetDotlist(ti_list);
+
 
     //List<Object> mergedList = new ArrayList<>();
 
@@ -72,8 +74,9 @@ public class selectdata extends AsyncTask<String, Void, String> {
         } else {
 
             mJsonString = result;
-            Log.d("데이터소통", result);
+            Log.d("데이터소통-일정", result);
             showResult(searchText);
+
 
 
         }
@@ -85,11 +88,9 @@ public class selectdata extends AsyncTask<String, Void, String> {
         String serverURL = params[0];
         Log.d("과연", serverURL);
         if (params[1] == "0") { //파라미터부분 사실상 없어도 될 것 같음 나중에 수정 (10.26)
-
-            //Log.d("과연", searchText);
-            postParameters = "month=" + searchText;
+            postParameters=0;
         } else if (params[1] == "1") { //필터링요청 입력
-
+            postParameters=1;
         }
 
 
@@ -350,77 +351,6 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
     }
 
-   private void showResult2(int num) {
-
-        String TAG_CHA = "date";
-        String TAG_URL = "id";
-        String TAG_DATE = "num";
-        String TAG_TIME = "title";
-        String TAG_SESSION = "type";
-        String TAG_TITLE = "title";
-        String TAG_CD = "unit_CD";
-        String TAG_NM = "unit_NM";
-        String TAG_SESS = "sess";
-        String TAG_CMANE = "committee_NAME";
-        String TAG_URL2 = "link_URL2";
-        String TAG_DEPT = "hr_DEPT_CD";
-
-
-
-        try {
-            JSONArray jsonArray = new JSONArray(mJsonString);
-            for (int i = 0; i < jsonArray.length(); i++) { //일정구독
-
-                JSONObject item = jsonArray.getJSONObject(i);
-
-                String cha = item.getString(TAG_CHA);
-                String url = item.getString(TAG_URL);
-                String date = item.getString(TAG_DATE);
-                String time = item.getString(TAG_TIME);
-                String session = item.getString(TAG_SESSION);
-                String title = item.getString(TAG_TITLE);
-                String cd = item.getString(TAG_CD);
-                String nm = item.getString(TAG_NM);
-
-                //이부분 생성자 선언
-                bonsche bc=new bonsche();
-
-                //생성자 세팅
-
-                //bc.meetingsession=session;
-                bc.title=title;
-                //bc.cha=cha;
-                //bc.unit_CD=cd;
-                //bc.unit_NM=nm;
-                bc.meeting_DATE=date;
-                bc.meeting_TIME=time;
-                //bc.link_URL=url;
-
-                bonsche_list.add(bc);
-                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
-                //*adapter.setArrayData(drugData);
-                //adapter.notifyDataSetChanged();*//*
-
-
-            }
-
-            //a1.setCm_List();
-            //a1.notifyDataSetChanged();
-
-
-
-        }catch(NullPointerException n){
-
-            Log.d("과연", "showResult : ",n);
-
-
-        } catch (JSONException e) {
-
-            Log.d("과연", "showResult : ", e);
-
-        }
-
-    }
     private void showResult3() throws JSONException {
 
     }

@@ -31,6 +31,9 @@ public class insertData extends AsyncTask<String, Void, String> {
     String searchText;
     private TextView mTextViewResult;
     String loginresult;
+    int postParameters=0;
+    ArrayList<subscribe> ss_list=new ArrayList<>();
+    AdapterUser au=new AdapterUser(ss_list);
 
 
 
@@ -55,21 +58,33 @@ public class insertData extends AsyncTask<String, Void, String> {
             Result = result;
             Log.d("데이터소통", result);
 
-            if(Result.contains("id")){//아이디찾기
-                //showResult2();
+            switch(postParameters){
+                case 0:
+                    if(Result.contains("id")){//아이디찾기
+                        //showResult2();
+                    }
+
+                    else if(Result.contains("password")){//비번찾기
+                        //showResult3();
+                    }
+
+                    else if(Result.contains("err")){//에러의 경우
+                        //읽을 필요 없음
+                    }
+
+                    else{
+                        showResult();
+                    }
+
+                    break;
+                case 1:
+                    Log.d("데이터소통-구독", Result);
+                    showResult3();
+                    break;
+
             }
 
-            else if(Result.contains("password")){//비번찾기
-                //showResult3();
-            }
 
-            else if(Result.contains("err")){//에러의 경우
-                //읽을 필요 없음
-            }
-
-            else{
-                showResult();
-            }
 
         }
 
@@ -113,6 +128,9 @@ public class insertData extends AsyncTask<String, Void, String> {
             subs[0]="date="+em;
             subs[1]="&id="+name;
             subs[1]="&title="+name;
+        }
+        else if(params[1]=="5"){//일정구독불러오기
+            postParameters=1;
         }
 
 
@@ -243,7 +261,69 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         }
     }
-    private void showResult3() throws JSONException {
+
+    private void showResult3() {
+
+        String TAG_DATE = "date";
+        String TAG_ID = "id";
+        String TAG_NUM = "num";
+        String TAG_TITLE = "title";
+        String TAG_TYPE = "type";
+
+
+
+        try {
+            JSONArray jsonArray = new JSONArray(Result);
+            for (int i = 0; i < jsonArray.length(); i++) { //일정구독
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String id = item.getString(TAG_ID);
+                String number = item.getString(TAG_NUM);
+                String title = item.getString(TAG_TITLE);
+                String type = item.getString(TAG_TYPE);
+
+                //이부분 생성자 선언
+                subscribe ss=new subscribe();
+
+                //생성자 세팅
+
+                //bc.meetingsession=session;
+                ss.num=number;
+                ss.id=id;
+                ss.date=date;
+                ss.type=type;
+                ss.title=title;
+
+
+                ss_list.add(ss);
+                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
+                //*adapter.setArrayData(drugData);
+                //adapter.notifyDataSetChanged();*//*
+
+
+            }
+
+            au.setCm_List(ss_list);
+            au.notifyDataSetChanged();
+            Log.d("어뎁터au", String.valueOf(au.getItemCount()));//어뎁터에 세팅은 완료
+
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
+
+    }
+    private void showResult4() throws JSONException {
 
     }
 
