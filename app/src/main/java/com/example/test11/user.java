@@ -32,6 +32,8 @@ public class user extends Fragment {
             }
         });
 
+
+
         setting = (ImageButton) v.findViewById(R.id.setting);
         setting.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -40,7 +42,7 @@ public class user extends Fragment {
                 startActivity(intent);
             }
         });
-    return v;
+        return v;
     }
 
 }

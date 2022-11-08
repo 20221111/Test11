@@ -30,7 +30,7 @@ public class insertData extends AsyncTask<String, Void, String> {
     String[] subs={"date","id","title","type"};
     String searchText;
     private TextView mTextViewResult;
-    Boolean loginresult;
+    String loginresult;
 
 
 
@@ -204,15 +204,15 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         if(Result.contains("0")){//이부분 기능별로 분리될 필요가 있는데 ..흠 url으로 구분해야겠다
             Log.d("데이터소통", "성공");
-            loginresult=true;
+            loginresult="true";
         }
         else if(Result.contains("1")){
             Log.d("데이터소통", "에러");
-            loginresult=false;
+            loginresult="false";
         }
         else if(Result.contains("2")){
             Log.d("데이터소통", "에러 틀림");
-            loginresult=false;
+            loginresult="false";
         }
         else {
             Log.d("데이터소통", "비밀번호 초기화");

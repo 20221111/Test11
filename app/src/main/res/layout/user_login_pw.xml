@@ -33,7 +33,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/c_password"
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:background="@drawable/id"
@@ -87,7 +87,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/newpassword"
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:background="@drawable/id"
