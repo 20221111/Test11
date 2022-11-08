@@ -47,6 +47,7 @@ public class Create_Account extends AppCompatActivity {
                 return false;
             }
         });
+
         edit_pw.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {//엔터 누르면 키보드 내려감 이뮬레이터에서는 안됨 노트북 엔터
