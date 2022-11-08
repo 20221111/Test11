@@ -40,6 +40,9 @@ public class user extends Fragment {
         ImageButton memo = v.findViewById(R.id.memo);
         ImageButton usersub = v.findViewById(R.id.usersub);
 
+        recyclerview_memo.setVisibility(View.GONE);
+        recyclerview_usersub.setVisibility(View.GONE);
+
         memo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
