@@ -5,13 +5,30 @@
       <map>
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/background.xml" value="0.2175" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/date.xml" value="0.259" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/enter.xml" value="0.258" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/forgotpassword.xml" value="0.155" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/home.xml" value="0.155" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/info_change.xml" value="0.1385" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/pw_change.xml" value="0.262" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/singup.xml" value="0.259" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/drawable/today.xml" value="0.259" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/forgotpassword.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/fragment_menu.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/fragment_search.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/fragment_user.xml" value="0.2" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/login.xml" value="0.17777777777777778" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/popup.xml" value="0.1" />
         <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/recycler_view.xml" value="0.1" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/row_listview.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/searchable.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/signup.xml" value="0.264" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/user_info.xml" value="0.1" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/user_login.xml" value="0.1" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/user_login2.xml" value="0.176" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/user_login_info.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/MY_COM/AndroidStudioProjects/Test11/app/src/main/res/layout/user_login_pw.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
