@@ -48,10 +48,10 @@ public class user_login extends AppCompatActivity {//비밀번호 확인클래�
             @Override
             public void onClick(View view){
                 String currentpas= String.valueOf(editText.getText());
-                //Log.d("비밀번호 입력확인", currentpas);
                 joinmember jm=new joinmember();
+                Log.d("비밀번호 입력확인",jm.id);
                 insertData insert = new insertData(); //로그인 가동
-                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Login/"+jm.getId()+"?password="+currentpas, "4");
+                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Login/"+jm.id+"?password="+currentpas, "4");
 
                 new Handler().postDelayed(new Runnable() {//비밀번호 일치해야 다음화면 넘어감
                     @Override
