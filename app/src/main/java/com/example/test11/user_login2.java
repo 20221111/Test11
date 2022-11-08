@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class user_login2 extends AppCompatActivity {
+public class user_login2 extends AppCompatActivity {//비밀번호만 변경할건지 전체 정보 변경할건지
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
