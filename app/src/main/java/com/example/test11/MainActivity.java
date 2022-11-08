@@ -84,6 +84,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //아이디 찾을 때, ForgotID 클릭 시 Forgot_ID 페이지로
+        Button ForgotID = findViewById(R.id.ForgotID);
+        ForgotID.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), Forgot_ID.class);
+                startActivity(intent);
+            }
+        });
+
         //로그인 자바는 안쓰는 것 같음
         //Sign in 클릭 시 메인(캘린더) 화면으로 이동
         ImageButton Sign_in = findViewById(R.id.Sign_in);
