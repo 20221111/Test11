@@ -33,10 +33,11 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/c_password"
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:background="@drawable/id"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/enter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
@@ -64,6 +65,7 @@
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:background="@drawable/id"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
@@ -87,10 +89,11 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/newpassword"
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:background="@drawable/id"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"

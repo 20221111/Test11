@@ -21,7 +21,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editquestion"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:background="@drawable/phonenumber"
@@ -48,7 +48,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/edit_email"
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:background="@drawable/id"

@@ -105,8 +105,6 @@ public class search extends Fragment {
         list.add("공청회");
         list.add("전체회의");
         list.add("소회의");
-
-
     }
 
 

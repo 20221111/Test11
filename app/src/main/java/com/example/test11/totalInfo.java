@@ -2,15 +2,15 @@ package com.example.test11;
 
 public class totalInfo {
     String type;
-    String sess;
-    String committee_NAME;
+    //String sess;
+    //String committee_NAME;
     String title;
     String meeting_TIME;
-    String unit_CD;
-    String unit_NM;
+    //String unit_CD;
+   // String unit_NM;
     String meeting_DATE;
-    String hr_DEPT_CD;
-    String link_URL2;
+    //String hr_DEPT_CD;
+    //String link_URL2;
 
     public String getType() {
         return type;
@@ -20,7 +20,7 @@ public class totalInfo {
         this.type = type;
     }
 
-    public String getSess() {
+    /*public String getSess() {
         return sess;
     }
 
@@ -34,7 +34,7 @@ public class totalInfo {
 
     public void setCommittee_NAME(String committee_NAME) {
         this.committee_NAME = committee_NAME;
-    }
+    }*/
 
     public String getTitle() {
         return title;
@@ -52,7 +52,7 @@ public class totalInfo {
         this.meeting_DATE = meeting_DATE;
     }
 
-    public String getUnit_CD() {
+    /*public String getUnit_CD() {
         return unit_CD;
     }
 
@@ -82,7 +82,7 @@ public class totalInfo {
 
     public void setHr_DEPT_CD(String hr_DEPT_CD) {
         this.hr_DEPT_CD= hr_DEPT_CD;
-    }
+    }*/
 
     public String getMeeting_TIME() {
         return meeting_TIME;

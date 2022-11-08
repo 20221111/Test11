@@ -117,6 +117,7 @@
         android:layout_width="345dp"
         android:layout_height="50dp"
         android:background="@drawable/id"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
