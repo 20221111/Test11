@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     private NotificationManager notificationManager;
     NotificationCompat.Builder builder;
+    public joinmember jm=new joinmember();
+    static String memberid=null;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -119,13 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
                 String m_id= String.valueOf(edit_id.getText());
                 String m_pw= String.valueOf(edit_pw.getText());
-
-
-                joinmember jm=new joinmember();
+                memberid=m_id;
 
                 insertData insert = new insertData(); //로그인 가동
                 insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Login/"+m_id+"?password="+m_pw, "4");
-                String id=jm.getId();
+
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
                             case "true":
                                 jm.id=m_id;
                                 jm.password=m_pw;
+                                String id=jm.getId();
+                                jm.setId(jm.id);
                                 Log.d("로그인", "로그인성공");
                                 Toast.makeText(MainActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
                                 Log.d("로그인", jm.getId());

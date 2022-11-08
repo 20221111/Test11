@@ -68,9 +68,9 @@ public class user_login_info extends AppCompatActivity {//전체정보 수정 (�
                 String newemail= String.valueOf(editemail.getText());
                 String newques= String.valueOf(editque.getText());
                 //Log.d("비밀번호 입력확인", currentpas);
-                joinmember jm=new joinmember();
+                MainActivity ma=new MainActivity();
                 insertData insert = new insertData(); //로그인 가동
-                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Acoount/changeAccount/"+jm.getId()+"?email="+newemail+"&name="+newname+"&security="+newques, "4");
+                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Acoount/changeAccount/"+ma.memberid+"?email="+newemail+"&name="+newname+"&security="+newques, "4");
 
                 new Handler().postDelayed(new Runnable() {//성공적으로 변경되면 다음화면으로 넘어감
                     @Override
