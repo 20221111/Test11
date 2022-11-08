@@ -15,9 +15,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class user extends Fragment {
+
     private View view;
-    private ImageButton user;
+    private ImageButton setting;
     private ImageButton subs;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,8 +32,8 @@ public class user extends Fragment {
             }
         });
 
-        user = (ImageButton) v.findViewById(R.id.user);
-        user.setOnClickListener(new View.OnClickListener(){
+        setting = (ImageButton) v.findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(getActivity(), user_login.class);
