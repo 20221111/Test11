@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class user extends Fragment {
     @Nullable
@@ -25,6 +26,9 @@ public class user extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
 
+        MainActivity ma=new MainActivity();
+        TextView name = (TextView) v.findViewById(R.id.editText8);
+        name.setText(ma.memberid);
         //나의 메모 리사이클러뷰
         RecyclerView recyclerview_memo = (RecyclerView) v.findViewById(R.id.listview_memo);
         LinearLayoutManager linearLayoutManager;
@@ -35,6 +39,12 @@ public class user extends Fragment {
         RecyclerView recyclerview_usersub = (RecyclerView) v.findViewById(R.id.listview_usersub);
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_usersub.setLayoutManager(linearLayoutManager);
+        insertData read = new insertData();
+
+        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/Show/"+ma.memberid, "5");
+        recyclerview_usersub.setAdapter(read.au);//selectData에서 add해도 성공
+        read.au.notifyDataSetChanged();
+
 
         ImageView rec_memo = (ImageView) v.findViewById(R.id.rec_memo);
         ImageView rec_usersub = (ImageView) v.findViewById(R.id.rec_usersub);
@@ -54,6 +64,8 @@ public class user extends Fragment {
         memo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 recyclerview_memo.setVisibility(View.VISIBLE);
                 recyclerview_usersub.setVisibility(View.GONE);
                 rec_memo.setVisibility(View.VISIBLE);
