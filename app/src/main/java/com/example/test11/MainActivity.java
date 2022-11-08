@@ -165,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
 
     /*private void setAlarm() {
         AlarmReceiver에 값 전달
-        Intent receiverIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, receiverIntent, 0);
+        //Intent receiverIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+        //PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, receiverIntent, 0);
 
         String from = "2020-05-27 10:31:00"; //임의로 날짜와 시간을 지정
 
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(datetime);
 
-        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
+        //alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
 
 
     }*/

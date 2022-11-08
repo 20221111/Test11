@@ -142,7 +142,6 @@ public class home extends Fragment implements View.OnClickListener {
         read.a1.notifyDataSetChanged();
 
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
