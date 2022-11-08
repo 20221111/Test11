@@ -81,6 +81,14 @@ public class insertData extends AsyncTask<String, Void, String> {
                     Log.d("데이터소통-구독", Result);
                     showResult3();
                     break;
+                case 2://아이디찾기
+                    Log.d("아이디찾기", Result);
+                    showResult2();
+                    break;
+                case 3://비밀번호 찾기
+                    Log.d("비밀번호찾기", Result);
+                    showResult4();
+                    break;
 
             }
 
@@ -110,16 +118,14 @@ public class insertData extends AsyncTask<String, Void, String> {
         }
 
         else if (params[1] == "1") { //아이디찾기
-            forgot_Id[0]="name="+name;
-            forgot_Id[1]="&email="+em;
+            postParameters=2;
 
         }
         else if(params[1]=="2"){//비밀번호 찾기
-            forgot_pw[0]="id="+id;
-            forgot_pw[1]="&security="+sec;
+            postParameters=3;
 
         }
-        else if(params[1]=="3"){//로그인//이거 호출하고 나서 요청정보 jm에 넣으면 됨
+        else if(params[1]=="3"){
             //login[0]="id="+id;
             login[1]="&password="+pw;
         }
@@ -151,27 +157,6 @@ public class insertData extends AsyncTask<String, Void, String> {
                 for (int i = 0; i < 4; i++) {
                     outputStream.write(join[i].getBytes("UTF-8"));
                     Log.d("과연", join[i]);
-                }
-
-            }
-            else if (params[1] == "1") {
-                for (int i = 0; i < 2; i++) {
-                    outputStream.write(forgot_Id[i].getBytes("UTF-8"));
-                    Log.d("과연", forgot_Id[i]);
-                }
-
-            }
-            else if (params[1] == "2") {
-                for (int i = 0; i < 2; i++) {
-                    outputStream.write(forgot_pw[i].getBytes("UTF-8"));
-                    Log.d("과연", forgot_pw[i]);
-                }
-
-            }
-            else if (params[1] == "3") {
-                for (int i = 1; i < 2; i++) {//테스트
-                    outputStream.write(login[i].getBytes("UTF-8"));
-                    Log.d("과연", login[i]);
                 }
 
             }
@@ -238,7 +223,7 @@ public class insertData extends AsyncTask<String, Void, String> {
 
     }
 
-    private void showResult2() throws JSONException {
+    private void showResult2() {
 
         String TAG_JSON = "id";
 
@@ -248,6 +233,29 @@ public class insertData extends AsyncTask<String, Void, String> {
 
             String findid=jsonObject.getString(TAG_JSON);
             Log.d("아이디찾기: ", findid);
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
+    }
+    private void showResult4() {
+
+        String TAG_JSON = "password";
+
+        try {
+            JSONObject jsonObject = new JSONObject(Result);
+            //JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            String findid=jsonObject.getString(TAG_JSON);
+            Log.d("비밀번호찾기: ", findid);
 
 
         }catch(NullPointerException n){
@@ -323,8 +331,6 @@ public class insertData extends AsyncTask<String, Void, String> {
         }
 
     }
-    private void showResult4() throws JSONException {
 
-    }
 
 }
