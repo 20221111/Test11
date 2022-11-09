@@ -13,6 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class user_login_info extends AppCompatActivity {//전체정보 수정 (한개만 바꿔도 상관없도록 만들어야함)
@@ -80,6 +82,7 @@ public class user_login_info extends AppCompatActivity {//전체정보 수정 (�
                                 case "true":
                                     Intent intent = new Intent(getApplicationContext(), CLD.class);
                                     startActivity(intent);
+                                    Toast.makeText(user_login_info.this, "개인정보가 변경되었습니다.", Toast.LENGTH_SHORT).show();
                                     break;
                                 case "false":
                                     //이부분 토스트추가
