@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,8 @@ public class user extends Fragment {
         TextView name = (TextView) v.findViewById(R.id.editText8);
         name.setText(ma.memberid);
         //나의 메모 리사이클러뷰
-        RecyclerView recyclerview_memo = (RecyclerView) v.findViewById(R.id.listview_memo);
         LinearLayoutManager linearLayoutManager;
+        RecyclerView recyclerview_memo = (RecyclerView) v.findViewById(R.id.listview_memo);
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_memo.setLayoutManager(linearLayoutManager);
 
@@ -45,6 +46,15 @@ public class user extends Fragment {
         recyclerview_usersub.setAdapter(read.au);//selectData에서 add해도 성공
         read.au.notifyDataSetChanged();
 
+        insertData read1 = new insertData();
+        read1.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
+        recyclerview_memo.setAdapter(read1.am);//selectData에서 add해도 성공
+        read1.am.notifyDataSetChanged();
+
+        //1. insertdata에서 메모일정 파싱(완료
+        //2. Arraylist에 담기(완료
+        //3. 어뎁터 구성(완료
+        //4. 어뎁터 연결
 
         ImageView rec_memo = (ImageView) v.findViewById(R.id.rec_memo);
         ImageView rec_usersub = (ImageView) v.findViewById(R.id.rec_usersub);
