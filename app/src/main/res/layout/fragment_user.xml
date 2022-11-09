@@ -67,7 +67,7 @@
             android:background="@drawable/rectangle"
             app:layout_constraintBottom_toBottomOf="@+id/imageView5"
             app:layout_constraintEnd_toStartOf="@+id/rec_usersub"
-            app:layout_constraintHorizontal_bias="0.215"
+            app:layout_constraintHorizontal_bias="0.292"
 
             app:layout_constraintStart_toStartOf="@+id/imageView5"
             app:layout_constraintTop_toTopOf="@+id/imageView5" />
@@ -91,22 +91,21 @@
             android:background="@drawable/rectangle"
             app:layout_constraintBottom_toBottomOf="@+id/imageView5"
             app:layout_constraintEnd_toEndOf="@+id/imageView5"
-            app:layout_constraintHorizontal_bias="0.832"
+            app:layout_constraintHorizontal_bias="0.718"
             app:layout_constraintStart_toEndOf="@+id/rec_usersub"
-            app:layout_constraintTop_toTopOf="@+id/imageView5"
-            app:layout_constraintVertical_bias="0.508" />
+            app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
         <TextView
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
             android:text="계정 관리"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/rec_setting"
             app:layout_constraintEnd_toEndOf="@+id/rec_setting"
-            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="@+id/rec_setting"
-            app:layout_constraintTop_toBottomOf="@+id/setting"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/setting" />
 
         <ImageButton
             android:id="@+id/memo"
@@ -118,33 +117,33 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/rec_memo"
             app:layout_constraintTop_toTopOf="@+id/rec_memo"
-            app:layout_constraintVertical_bias="0.05" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:gravity="center"
             android:text="나의 메모"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/rec_memo"
             app:layout_constraintEnd_toEndOf="@+id/rec_memo"
-            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="@+id/rec_memo"
-            app:layout_constraintTop_toTopOf="@+id/rec_memo"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/memo" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
             android:text="저장한 일정"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/rec_usersub"
             app:layout_constraintEnd_toEndOf="@+id/rec_usersub"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/rec_usersub"
-            app:layout_constraintTop_toTopOf="@+id/rec_usersub"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/usersub" />
 
         <ImageButton
             android:id="@+id/setting"
