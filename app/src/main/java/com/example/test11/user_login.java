@@ -22,7 +22,7 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.ParseException;
 import java.util.Date;
-
+//개인정보 수정(비밀번호 확인)
 public class user_login extends AppCompatActivity {//비밀번호 확인클래스
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,9 +61,12 @@ public class user_login extends AppCompatActivity {//비밀번호 확인클래�
                             case "true":
                                 Intent intent = new Intent(getApplicationContext(), user_login2.class);
                                 startActivity(intent);
+                                Toast.makeText(user_login.this, "비밀번호가 확인됐습니다.", Toast.LENGTH_SHORT).show();
                                 break;
                             case "false":
                                 //이부분 토스트추가+ 입력된 내용 초기화
+                                Toast.makeText(user_login.this, "비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
+                                editText.setText(null);
                                 break;
 
                         }
