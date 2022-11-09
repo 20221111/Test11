@@ -36,6 +36,7 @@ public class insertData extends AsyncTask<String, Void, String> {
     AdapterUser au=new AdapterUser(ss_list);
     String findpw;
     String findid;
+    String memoresult="false";
 
 
 
@@ -92,6 +93,12 @@ public class insertData extends AsyncTask<String, Void, String> {
                     showResult4();
                     break;
 
+                case 4:
+                    //Log.d("메모입력", Result);
+                    showResult5();
+                    break;
+
+
             }
 
 
@@ -139,6 +146,9 @@ public class insertData extends AsyncTask<String, Void, String> {
         }
         else if(params[1]=="5"){//일정구독불러오기
             postParameters=1;
+        }
+        else if(params[1]=="6"){//메모입력
+            postParameters=4;
         }
 
 
@@ -248,9 +258,9 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         }
     }
-    private void showResult4() {
+    private void showResult4() {//비밀번호찾기
 
-        String TAG_JSON = "password";
+        String TAG_JSON = "id";
 
         try {
             JSONObject jsonObject = new JSONObject(Result);
@@ -270,6 +280,16 @@ public class insertData extends AsyncTask<String, Void, String> {
             Log.d("과연", "showResult : ", e);
 
         }
+    }
+
+    private void showResult5() {
+        //Log.d("메모결과", String.valueOf(Result.charAt(3)));
+        Log.d("메모결과", String.valueOf(Result.charAt(2)));
+        if(String.valueOf(Result.charAt(2)).equals("0")){
+            memoresult="true";
+            Log.d("메모결과", memoresult);
+        }
+
     }
 
     private void showResult3() {

@@ -45,11 +45,11 @@
             app:compactCalendarTextColor="#FF000000"
             app:compactCalendarTextSize="12sp" />
 
-        <TextView
+        <Button
             android:id="@+id/textView_result2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#D3D3D3"
+            android:background="@color/white"
             android:gravity="center"
             android:text="가져온 날짜 정보"
             android:textAlignment="center"
