@@ -1,5 +1,6 @@
 package com.example.test11;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,6 +62,7 @@ public class home extends Fragment implements View.OnClickListener {
     SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 
     public String searchText;
+    public String clickD;
     selectdata read1;
     boolean scroll=false;
 
@@ -107,7 +109,7 @@ public class home extends Fragment implements View.OnClickListener {
         final CompactCalendarView compactCalendarView = (CompactCalendarView) v.findViewById(R.id.compactcalendar_view);
 
         TextView textView_month = (TextView) v.findViewById(R.id.textView_month);
-        TextView textView_result = (TextView) v.findViewById(R.id.textView_result2);
+        Button textView_result = (Button) v.findViewById(R.id.textView_result2);
 
 
 
@@ -121,6 +123,7 @@ public class home extends Fragment implements View.OnClickListener {
         searchText=mFormat.format(mDate);
         read1=new selectdata();
         textView_result.setText(searchText);
+        clickD=searchText;
         joinmember jm=new joinmember();
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
 
@@ -193,11 +196,7 @@ public class home extends Fragment implements View.OnClickListener {
 
 
 
-
-
-
-
-
+        //리사이클러뷰위에 날짜 누르면 일정추가됨
         textView_month.setText(dateFormatForMonth.format(compactCalendarView.getFirstDayOfCurrentMonth()));
         compactCalendarView.setFirstDayOfWeek(Calendar.MONDAY);
         textView_result.setOnClickListener(new View.OnClickListener() {
@@ -207,37 +206,92 @@ public class home extends Fragment implements View.OnClickListener {
 
                 String[] getDate2 = getDate.split(":");
                 String getDateST = getDate2[0];
-                Log.d(TAG, "태그 getDateST : " + getDateST);
+                Log.d("메모", "태그 getDateST : " + getDateST);
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                AlertDialog dialog = builder.setTitle("일정을 삭제하겠습니까?")
+                AlertDialog dialog = builder.setTitle("일정추가하기")
+                        .setMessage(clickD + "에 일정을 추가하시겠습니까?")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // 확인 클릭 시 실행할 거 작성
-                                Date writeDate = null;
-                                try {
-                                    writeDate = simpleDate.parse(getDateST);
-                                    Log.d(TAG, "태그 writeDate: " + writeDate);
+                                Toast.makeText(getActivity(), "확인되었습니다.", Toast.LENGTH_SHORT).show();
+                                EditText editText = new EditText(getActivity());
 
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
+                                // 일정입력할 팝업 띄우기
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                AlertDialog dialogText = builder.setTitle("추가할 일정을 입력해 주세요.")
+                                        // .setMessage("메시지 입력")
+                                        .setView(editText)
+                                        .setPositiveButton("저장하기", new DialogInterface.OnClickListener() {
+                                            @SuppressLint("SetTextI18n")
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                //메모 api불러오기
+                                                //http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/push/rr?Contents=ff&date=2022-11-09
 
-                                Long currentLong = writeDate.getTime();
-                                Log.d(TAG, "태그 currentLong : " + currentLong);
+                                                insertData insert = new insertData(); //로그인 가동
+                                                MainActivity am=new MainActivity();
+                                                String memo= String.valueOf(editText.getText());
+                                                Log.d("메모입력", memo+":"+clickD);
 
-                                compactCalendarView.removeEvents(currentLong);
-                                //textView_result.setText("");
-                                Toast.makeText(getActivity(), "일정이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/push/"+am.memberid+"?Contents="+memo+"&date="+clickD, "6");
+
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+
+                                                        switch (insert.memoresult){
+                                                            case "true":
+                                                                Date currentDay = null;
+                                                                try {
+                                                                    // .parse 함수 : Parses text from a string to produce a Date (문자열에서 텍스트를 분석하여 날짜 생성)
+                                                                    currentDay = simpleDate.parse(clickD);
+                                                                    //Log.d(TAG, "태그 currentDay : " + currentDay);
+
+                                                                } catch (ParseException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                Long currentLong = currentDay.getTime();
+                                                                Log.d(TAG, "태그 currentLong : " + currentLong);
+
+                                                                Event ev1 = new Event(Color.GREEN, currentLong, currentDay + " : " + editText.getText().toString());
+                                                                //Event ev2 = new Event(Color.GREEN, currentLong, clickDate + " : " + editText.getText().toString());
+                                                                compactCalendarView.addEvent(ev1);
+                                                                //textView_result.setText(clickDate + " : " + editText.getText().toString());
+                                                                Toast.makeText(getActivity(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                                                                break;
+
+                                                            case "false":
+                                                                Toast.makeText(getActivity(), "일정이 저장실패", Toast.LENGTH_SHORT).show();
+                                                                break;
+
+                                                        }
+                                                    }
+                                                }, 1000);
+
+
+                                            }
+                                        })
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // 취소 클릭 시 실행할 거 작성
+                                                Toast.makeText(getActivity(), "일정입력 취소되었습니다.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .create();
+                                dialogText.show();
+
+
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // 취소 클릭 시 실행할 거 작성
-                                Toast.makeText(getActivity(), "일정삭제가 취소되었습니다..", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "취소되었습니다.", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .create();
@@ -245,7 +299,6 @@ public class home extends Fragment implements View.OnClickListener {
 
             }
         });
-
 
         // 날짜 클릭 이벤트 관련 코드
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -255,6 +308,7 @@ public class home extends Fragment implements View.OnClickListener {
                 List<Event> events = compactCalendarView.getEvents(dateClicked);
                 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
                 String clickDate = simpleDate.format(dateClicked);
+                clickD=clickDate;
                 textView_result.setText(clickDate);
 
                 Log.d("과연", String.valueOf(scroll));
@@ -271,81 +325,15 @@ public class home extends Fragment implements View.OnClickListener {
                 }
 
 
+
+
+
                 //read.adapter.setCdate(clickDate,true);
                 //read.adapter.notifyDataSetChanged();
 
 
-                // 해당날짜에 이벤트가 있으면
-                if (events.size() > 0) {
-                    //textView_result.setText(events.get(0).getData().toString());
-                }
-                // 해당날짜에 이벤트가 없으면
-                else {
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    AlertDialog dialog = builder.setTitle("일정추가하기")
-                            .setMessage(clickDate + "에 일정을 추가하시겠습니까?")
-                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // 확인 클릭 시 실행할 거 작성
-                                    Toast.makeText(getActivity(), "확인되었습니다.", Toast.LENGTH_SHORT).show();
-                                    EditText editText = new EditText(getActivity());
-
-                                    // 일정입력할 팝업 띄우기
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                    AlertDialog dialogText = builder.setTitle("추가할 일정을 입력해 주세요.")
-                                            // .setMessage("메시지 입력")
-                                            .setView(editText)
-                                            .setPositiveButton("저장하기", new DialogInterface.OnClickListener() {
-                                                @SuppressLint("SetTextI18n")
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    String dateClicked_st = simpleDate.format(dateClicked);
-                                                    Log.d(TAG, "태그 dateClicked_st : " + dateClicked_st);
-
-                                                    Date currentDay = null;
-                                                    try {
-                                                        // .parse 함수 : Parses text from a string to produce a Date (문자열에서 텍스트를 분석하여 날짜 생성)
-                                                        currentDay = simpleDate.parse(dateClicked_st);
-                                                        Log.d(TAG, "태그 currentDay : " + currentDay);
-
-                                                    } catch (ParseException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                    Long currentLong = currentDay.getTime();
-                                                    Log.d(TAG, "태그 currentLong : " + currentLong);
-
-                                                    Event ev1 = new Event(Color.GREEN, currentLong, clickDate + " : " + editText.getText().toString());
-                                                    //Event ev2 = new Event(Color.GREEN, currentLong, clickDate + " : " + editText.getText().toString());
-                                                    compactCalendarView.addEvent(ev1);
-                                                    //textView_result.setText(clickDate + " : " + editText.getText().toString());
-                                                    Toast.makeText(getActivity(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    // 취소 클릭 시 실행할 거 작성
-                                                    Toast.makeText(getActivity(), "일정입력 취소되었습니다.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .create();
-                                    dialogText.show();
 
 
-                                }
-                            })
-                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // 취소 클릭 시 실행할 거 작성
-                                    Toast.makeText(getActivity(), "취소되었습니다.", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .create();
-                    dialog.show();
-                }
             }
 
             @Override
@@ -408,8 +396,12 @@ public class home extends Fragment implements View.OnClickListener {
                 }, 1000);
 
             }
+
         });
+
         return v;
+
+
     }
 
     @Override

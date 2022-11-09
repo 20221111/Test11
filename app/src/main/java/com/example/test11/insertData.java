@@ -33,9 +33,12 @@ public class insertData extends AsyncTask<String, Void, String> {
     String loginresult;
     int postParameters=0;
     ArrayList<subscribe> ss_list=new ArrayList<>();
+    ArrayList<memodata> mo_list=new ArrayList<>();
     AdapterUser au=new AdapterUser(ss_list);
+    AdapterMemo am=new AdapterMemo(mo_list);
     String findpw;
     String findid;
+    String memoresult="false";
 
 
 
@@ -92,6 +95,17 @@ public class insertData extends AsyncTask<String, Void, String> {
                     showResult4();
                     break;
 
+                case 4:
+                    //Log.d("메모입력", Result);
+                    showResult5();
+                    break;
+                case 5:
+                    Log.d("데이터소통-메모", Result);
+                    showResult6();
+                    break;
+
+
+
             }
 
 
@@ -139,6 +153,12 @@ public class insertData extends AsyncTask<String, Void, String> {
         }
         else if(params[1]=="5"){//일정구독불러오기
             postParameters=1;
+        }
+        else if(params[1]=="6"){//메모입력
+            postParameters=4;
+        }
+        else if(params[1]=="7"){//메모불러오기
+            postParameters=5;
         }
 
 
@@ -248,9 +268,9 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         }
     }
-    private void showResult4() {
-        //비밀번호 찾기
-        String TAG_JSON = "id";//password
+    private void showResult4() {//비밀번호찾기
+
+        String TAG_JSON = "id";
 
         try {
             JSONObject jsonObject = new JSONObject(Result);
@@ -270,6 +290,16 @@ public class insertData extends AsyncTask<String, Void, String> {
             Log.d("과연", "showResult : ", e);
 
         }
+    }
+
+    private void showResult5() {
+        //Log.d("메모결과", String.valueOf(Result.charAt(3)));
+        Log.d("메모결과", String.valueOf(Result.charAt(2)));
+        if(String.valueOf(Result.charAt(2)).equals("0")){
+            memoresult="true";
+            Log.d("메모결과", memoresult);
+        }
+
     }
 
     private void showResult3() {
@@ -318,6 +348,61 @@ public class insertData extends AsyncTask<String, Void, String> {
             au.setCm_List(ss_list);
             au.notifyDataSetChanged();
             Log.d("어뎁터au", String.valueOf(au.getItemCount()));//어뎁터에 세팅은 완료
+
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
+
+    }
+
+    private void showResult6() {
+
+        String TAG_DATE = "date";
+        String TAG_ID = "id";
+        String TAG_NUM = "num";
+        String TAG_CONTENTS = "contents";
+
+        try {
+            JSONObject object =new JSONObject(Result);
+            JSONArray jsonArray = object.getJSONArray("MEMO");
+            for (int i = 0; i < jsonArray.length(); i++) { //일정구독
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String id = item.getString(TAG_ID);
+                String number = item.getString(TAG_NUM);
+                String content = item.getString(TAG_CONTENTS);
+
+                //이부분 생성자 선언
+                memodata mo=new memodata();
+
+                //생성자 세팅
+                mo.num=number;
+                mo.id=id;
+                mo.date=date;
+                mo.contents=content;
+
+                mo_list.add(mo);
+                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
+                //*adapter.setArrayData(drugData);
+                //adapter.notifyDataSetChanged();*//*
+
+
+            }
+
+            am.setCm_List(mo_list);
+            am.notifyDataSetChanged();
+            Log.d("어뎁터am", String.valueOf(am.getItemCount()));//어뎁터에 세팅은 완료
 
 
 
