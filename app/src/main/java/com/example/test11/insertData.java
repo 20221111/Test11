@@ -34,6 +34,8 @@ public class insertData extends AsyncTask<String, Void, String> {
     int postParameters=0;
     ArrayList<subscribe> ss_list=new ArrayList<>();
     AdapterUser au=new AdapterUser(ss_list);
+    String findpw;
+    String findid;
 
 
 
@@ -231,7 +233,7 @@ public class insertData extends AsyncTask<String, Void, String> {
             JSONObject jsonObject = new JSONObject(Result);
             //JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            String findid=jsonObject.getString(TAG_JSON);
+            findid=jsonObject.getString(TAG_JSON);
             Log.d("아이디찾기: ", findid);
 
 
@@ -247,15 +249,15 @@ public class insertData extends AsyncTask<String, Void, String> {
         }
     }
     private void showResult4() {
-
-        String TAG_JSON = "password";
+        //비밀번호 찾기
+        String TAG_JSON = "id";//password
 
         try {
             JSONObject jsonObject = new JSONObject(Result);
             //JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            String findid=jsonObject.getString(TAG_JSON);
-            Log.d("비밀번호찾기: ", findid);
+            findpw=jsonObject.getString(TAG_JSON);
+            Log.d("비밀번호찾기: ", findpw);
 
 
         }catch(NullPointerException n){
