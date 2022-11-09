@@ -24,12 +24,85 @@
             android:textColor="#FF000000"
             android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/test"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/icon_filter"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/test"
+                android:layout_width="29dp"
+                android:layout_height="30dp"
+                android:background="@drawable/icon_filter" />
+
+            <TextView
+                android:id="@+id/commbon"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  본회의"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/bon_color"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/commbon" />
+
+            <TextView
+                android:id="@+id/commkong"
+                android:layout_width="22dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="    공청회"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/kong_color"
+                android:layout_width="2dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/commkong" />
+
+            <TextView
+                android:id="@+id/commmain"
+                android:layout_width="37dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="    전체회의"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/main_color"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/commmain" />
+
+            <TextView
+                android:id="@+id/commsmall"
+                android:layout_width="23dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="    소회의"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/small_color"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/commsmall" />
+
+
+        </LinearLayout>
+
 
         <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/compactcalendar_view"
