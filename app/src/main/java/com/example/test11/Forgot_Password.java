@@ -74,13 +74,17 @@ public class Forgot_Password extends AppCompatActivity {
                     public void run() {
                         Log.d("비밀번호 찾기", String.valueOf(insert.findpw));
 
-                                Log.d("비밀번호 찾기", "비밀번호 찾기 성공");
-                                Toast.makeText(Forgot_Password.this, "변경된 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
-                                Show_password.setText(insert.findpw);
-                                /*
-                                Log.d("비밀번호 찾기", "비밀번호 찾기 실패");
-                                Toast.makeText(Forgot_Password.this, "입력이 잘못됬습니다.", Toast.LENGTH_SHORT).show();
-                                   */
+                        if(String.valueOf(insert.findpw) != null)
+                        {
+                            Log.d("비밀번호 찾기", "비밀번호 찾기 성공");
+                            Toast.makeText(Forgot_Password.this, "변경된 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+                            Show_password.setText(insert.findpw);
+                        }
+                        else
+                        {
+                            Log.d("비밀번호 찾기", "비밀번호 찾기 실패");
+                            Toast.makeText(Forgot_Password.this, "입력이 잘못됬습니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }, 1000);
 
