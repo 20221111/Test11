@@ -42,12 +42,12 @@ public class user extends Fragment {
         recyclerview_usersub.setLayoutManager(linearLayoutManager);
         insertData read = new insertData();
 
-        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/Show/"+ma.memberid, "5");
+        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/Show/"+ma.memberid, "5"); //구독한일정 띄우는 api
         recyclerview_usersub.setAdapter(read.au);//selectData에서 add해도 성공
         read.au.notifyDataSetChanged();
 
         insertData read1 = new insertData();
-        read1.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
+        read1.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");//메모 띄우는 api
         recyclerview_memo.setAdapter(read1.am);//selectData에서 add해도 성공
         read1.am.notifyDataSetChanged();
 

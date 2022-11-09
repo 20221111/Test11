@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/textView_month"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:background="#F9F9F9"
             android:gravity="center"
             android:text="Month"
@@ -59,7 +59,7 @@
             android:id="@+id/listView_result"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:background="#D3D3D3"
             android:gravity="center"
             android:text="클릭한 날짜 정보"
