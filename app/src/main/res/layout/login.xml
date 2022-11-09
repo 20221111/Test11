@@ -132,22 +132,22 @@
         android:background="@drawable/forgotpassword"
         app:layout_constraintBottom_toTopOf="@+id/Sign_in"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <Button
         android:id="@+id/ForgotID"
         android:layout_width="67dp"
         android:layout_height="14dp"
         android:background="@drawable/forgotid"
-        app:layout_constraintBottom_toTopOf="@+id/Sign_in"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:layout_constraintVertical_bias="0.129" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
