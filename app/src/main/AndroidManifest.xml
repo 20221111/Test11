@@ -29,6 +29,8 @@
         <activity android:name=".Create_Account"/>
         <activity android:name=".home"/>
         <activity android:name=".Forgot_Password"/>
+        <activity android:name=".Forgot_ID"/>
+        <activity android:name=".Forgot_ID2"/>
         <activity android:name=".CLD"/>
         <activity android:name=".Login"/>
         <activity android:name=".user_login"/>

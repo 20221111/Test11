@@ -70,12 +70,12 @@ public class user_login_pw extends AppCompatActivity {//패스워드만 수정
                 String newpass= String.valueOf(new_pass.getText());
                 String newpass_check= String.valueOf(new_passcheck.getText());
                 //Log.d("비밀번호 입력확인", currentpas);
-                joinmember jm=new joinmember();
+                MainActivity ma=new MainActivity();
                 insertData insert = new insertData(); //로그인 가동
 
                 if(newpass.equals(newpass_check)){//새 비밀번호와 확인비번 일치할경우
                     Log.d("비밀번호 입력확인", "성공");
-                    insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Acoount/changepassword/"+jm.getId()+"?curpassword="+currentpas+"&password="+newpass, "4");
+                    insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Acoount/changepassword/"+ma.memberid+"?curpassword="+currentpas+"&password="+newpass, "4");
 
                     new Handler().postDelayed(new Runnable() {//성공적으로 변경되면 다음화면으로 넘어감
                         @Override

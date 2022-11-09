@@ -31,6 +31,11 @@ public class insertData extends AsyncTask<String, Void, String> {
     String searchText;
     private TextView mTextViewResult;
     String loginresult;
+    int postParameters=0;
+    ArrayList<subscribe> ss_list=new ArrayList<>();
+    AdapterUser au=new AdapterUser(ss_list);
+    String findpw;
+    String findid;
 
 
 
@@ -55,21 +60,41 @@ public class insertData extends AsyncTask<String, Void, String> {
             Result = result;
             Log.d("데이터소통", result);
 
-            if(Result.contains("id")){//아이디찾기
-                //showResult2();
+            switch(postParameters){
+                case 0:
+                    if(Result.contains("id")){//아이디찾기
+                        //showResult2();
+                    }
+
+                    else if(Result.contains("password")){//비번찾기
+                        //showResult3();
+                    }
+
+                    else if(Result.contains("err")){//에러의 경우
+                        //읽을 필요 없음
+                    }
+
+                    else{
+                        showResult();
+                    }
+
+                    break;
+                case 1:
+                    Log.d("데이터소통-구독", Result);
+                    showResult3();
+                    break;
+                case 2://아이디찾기
+                    Log.d("아이디찾기", Result);
+                    showResult2();
+                    break;
+                case 3://비밀번호 찾기
+                    Log.d("비밀번호찾기", Result);
+                    showResult4();
+                    break;
+
             }
 
-            else if(Result.contains("password")){//비번찾기
-                //showResult3();
-            }
 
-            else if(Result.contains("err")){//에러의 경우
-                //읽을 필요 없음
-            }
-
-            else{
-                showResult();
-            }
 
         }
 
@@ -95,16 +120,14 @@ public class insertData extends AsyncTask<String, Void, String> {
         }
 
         else if (params[1] == "1") { //아이디찾기
-            forgot_Id[0]="name="+name;
-            forgot_Id[1]="&email="+em;
+            postParameters=2;
 
         }
         else if(params[1]=="2"){//비밀번호 찾기
-            forgot_pw[0]="id="+id;
-            forgot_pw[1]="&security="+sec;
+            postParameters=3;
 
         }
-        else if(params[1]=="3"){//로그인//이거 호출하고 나서 요청정보 jm에 넣으면 됨
+        else if(params[1]=="3"){
             //login[0]="id="+id;
             login[1]="&password="+pw;
         }
@@ -113,6 +136,9 @@ public class insertData extends AsyncTask<String, Void, String> {
             subs[0]="date="+em;
             subs[1]="&id="+name;
             subs[1]="&title="+name;
+        }
+        else if(params[1]=="5"){//일정구독불러오기
+            postParameters=1;
         }
 
 
@@ -133,27 +159,6 @@ public class insertData extends AsyncTask<String, Void, String> {
                 for (int i = 0; i < 4; i++) {
                     outputStream.write(join[i].getBytes("UTF-8"));
                     Log.d("과연", join[i]);
-                }
-
-            }
-            else if (params[1] == "1") {
-                for (int i = 0; i < 2; i++) {
-                    outputStream.write(forgot_Id[i].getBytes("UTF-8"));
-                    Log.d("과연", forgot_Id[i]);
-                }
-
-            }
-            else if (params[1] == "2") {
-                for (int i = 0; i < 2; i++) {
-                    outputStream.write(forgot_pw[i].getBytes("UTF-8"));
-                    Log.d("과연", forgot_pw[i]);
-                }
-
-            }
-            else if (params[1] == "3") {
-                for (int i = 1; i < 2; i++) {//테스트
-                    outputStream.write(login[i].getBytes("UTF-8"));
-                    Log.d("과연", login[i]);
                 }
 
             }
@@ -220,7 +225,7 @@ public class insertData extends AsyncTask<String, Void, String> {
 
     }
 
-    private void showResult2() throws JSONException {
+    private void showResult2() {
 
         String TAG_JSON = "id";
 
@@ -228,7 +233,7 @@ public class insertData extends AsyncTask<String, Void, String> {
             JSONObject jsonObject = new JSONObject(Result);
             //JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            String findid=jsonObject.getString(TAG_JSON);
+            findid=jsonObject.getString(TAG_JSON);
             Log.d("아이디찾기: ", findid);
 
 
@@ -243,8 +248,91 @@ public class insertData extends AsyncTask<String, Void, String> {
 
         }
     }
-    private void showResult3() throws JSONException {
+    private void showResult4() {
+        //비밀번호 찾기
+        String TAG_JSON = "id";//password
+
+        try {
+            JSONObject jsonObject = new JSONObject(Result);
+            //JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            findpw=jsonObject.getString(TAG_JSON);
+            Log.d("비밀번호찾기: ", findpw);
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
+    }
+
+    private void showResult3() {
+
+        String TAG_DATE = "date";
+        String TAG_ID = "id";
+        String TAG_NUM = "num";
+        String TAG_TITLE = "title";
+        String TAG_TYPE = "type";
+
+
+
+        try {
+            JSONArray jsonArray = new JSONArray(Result);
+            for (int i = 0; i < jsonArray.length(); i++) { //일정구독
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String id = item.getString(TAG_ID);
+                String number = item.getString(TAG_NUM);
+                String title = item.getString(TAG_TITLE);
+                String type = item.getString(TAG_TYPE);
+
+                //이부분 생성자 선언
+                subscribe ss=new subscribe();
+
+                //생성자 세팅
+
+                //bc.meetingsession=session;
+                ss.num=number;
+                ss.id=id;
+                ss.date=date;
+                ss.type=type;
+                ss.title=title;
+
+
+                ss_list.add(ss);
+                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
+                //*adapter.setArrayData(drugData);
+                //adapter.notifyDataSetChanged();*//*
+
+
+            }
+
+            au.setCm_List(ss_list);
+            au.notifyDataSetChanged();
+            Log.d("어뎁터au", String.valueOf(au.getItemCount()));//어뎁터에 세팅은 완료
+
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
 
     }
+
 
 }
