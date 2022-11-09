@@ -1,11 +1,12 @@
 package com.example.test11;
 
-public class totalDate {
+public class totalDate {//어뎁터에 뿌리는 생성자
     String type;
     String title;
     String meeting_DATE;
     String meeting_TIME;
-    String committee_NAME = " ";
+    String committee_NAME;
+    String url;
 
     public String getType() {
         return type;
@@ -13,6 +14,14 @@ public class totalDate {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getCommittee_NAME() {
