@@ -32,10 +32,10 @@ public class search extends Fragment {
 
         LinearLayoutManager linearLayoutManager;
 
-        editSearch = (EditText) v.findViewById(R.id.editSearch);
+        //editSearch = (EditText) v.findViewById(R.id.editSearch);
         //listView = (ListView) v.findViewById(R.id.listView);
 
-        //저장한 일정 리사이클러뷰
+        //검색 리사이클러뷰
         RecyclerView recyclerview_search = (RecyclerView) v.findViewById(R.id.listview_search);
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_search.setLayoutManager(linearLayoutManager);
