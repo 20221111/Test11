@@ -90,6 +90,9 @@ public class user_login_pw extends AppCompatActivity {//패스워드만 수정
                                 case "false":
                                     //이부분 토스트추가+ 입력된 내용 초기화
                                     Toast.makeText(user_login_pw.this, "비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
+                                    curr_pass.setText(null);
+                                    new_pass.setText(null);
+                                    new_passcheck.setText(null);
                                     break;
 
                             }
