@@ -16,7 +16,8 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/border">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,7 +27,7 @@
                     style="@style/recyclerview_contents"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="날짜"/>
+                    android:text="날짜" />
 
                 <TextView
                     android:id="@+id/time"
@@ -52,13 +53,13 @@
                 style="@style/recyclerview_contents"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="아이콘"/>
+                android:text="아이콘" />
             <TextView
                 android:id="@+id/name"
                 style="@style/recyclerview_contents"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:text="위원회이름"/>
+                android:text="위원회이름" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
