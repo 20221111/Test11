@@ -25,11 +25,11 @@
 
     <Button
         android:id="@+id/url"
-        android:layout_width="40dp"
+        android:layout_width="31dp"
         android:layout_height="21dp"
         android:layout_gravity="bottom"
-        android:background="@color/purple_200"
-        android:text="url"
+
+        android:background="@drawable/url"
         android:hapticFeedbackEnabled="true" />
 
     <Button
