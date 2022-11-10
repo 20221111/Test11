@@ -22,6 +22,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class user extends Fragment {
+
+    RecyclerView recyclerview_memo;
+    RecyclerView recyclerview_usersub;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,12 +38,12 @@ public class user extends Fragment {
         //나의 메모 리사이클러뷰
         LinearLayoutManager linearLayoutManager;
 
-        RecyclerView recyclerview_memo = (RecyclerView) v.findViewById(R.id.listview_memo);
+        recyclerview_memo = (RecyclerView) v.findViewById(R.id.listview_memo);
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_memo.setLayoutManager(linearLayoutManager);
 
         //저장한 일정 리사이클러뷰
-        RecyclerView recyclerview_usersub = (RecyclerView) v.findViewById(R.id.listview_usersub);
+        recyclerview_usersub = (RecyclerView) v.findViewById(R.id.listview_usersub);
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_usersub.setLayoutManager(linearLayoutManager);
 
