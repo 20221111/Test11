@@ -3,6 +3,7 @@ package  com.example.test11;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,22 @@ public class AdapterUser extends RecyclerView.Adapter<ViewHolder2> {//일정구�
 
                 String num=ss_List.get(pos).getNum();
                 Log.d("클릭이벤트", num);
+
+                //excute 진행하는 부분
+                insertData insert = new insertData();
+                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/pop/"+num, "6");
+                //갱신해줘야함
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(insert.memoresult.equals("true")){
+                            ss_List.remove(pos);
+                            notifyDataSetChanged();
+                        }
+
+                    }
+                }, 1000);
             }
         });
     }

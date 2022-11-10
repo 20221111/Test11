@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +29,7 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
     String[] sublist={"date","id","title","type"};
     Boolean is_sub=false;
     List<Integer> sub;
+    totalDate where;
 
     public Adapter1( ArrayList<totalDate> tt_List) {
         this.tt_List=tt_List;
@@ -49,6 +49,7 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
         //commMain cm = cm_List.get(position);
         //String mg= (String) mergedList.get(position);
         //String imageurl=drugimage.getDrugImg();
+        where=tt_List.get(position);
 
         insertData read = new insertData();
         read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/Show/"+ma.memberid, "5");
@@ -61,7 +62,7 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
                         is_sub=true;
                         Log.d("구독유무", String.valueOf(position)+":"+String.valueOf(is_sub));
                         //굳이 리스트 안 쓰고 for문 안에서 버튼모양 바꾸셔도 될 것 같아요 position 넣어서
-                        sub.add(position);//리스트에 구독 된 일정의 포지션 넣어둠
+                        //sub.add(position);//리스트에 구독 된 일정의 포지션 넣어둠
 
                     }
                 }

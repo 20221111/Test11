@@ -47,12 +47,13 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/icon"
-                style="@style/recyclerview_contents"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="아이콘"/>
+                <Button
+                    android:id="@+id/url"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/url"
+                    android:hapticFeedbackEnabled="true" />
             <TextView
                 android:id="@+id/name"
                 style="@style/recyclerview_contents"

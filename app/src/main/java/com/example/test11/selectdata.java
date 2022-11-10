@@ -42,6 +42,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
     //RecyclerView recyclerview;
     //Adapter adapter = new Adapter(td_list);
     Adapter1 a1=new Adapter1(to_list);
+    //Adapter1 a2=new Adapter1(td_list);
     SetDotlist dl=new SetDotlist(ti_list);
 
 
@@ -73,9 +74,19 @@ public class selectdata extends AsyncTask<String, Void, String> {
             mTextViewResult.setText(errorString);
         } else {
 
-            mJsonString = result;
-            Log.d("데이터소통-일정", result);
-            showResult(searchText);
+
+            switch (postParameters){
+                case 0:
+                    Log.d("데이터소통-일정", result);
+                    showResult(searchText);
+
+                case 1:
+                    Log.d("데이터소통-필터", result);
+                    //showResult(searchText,filter);
+            }
+
+
+
 
 
 
@@ -153,6 +164,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
         }
     }
 
+
     public void showResult(String searchText) {
 
         String TAG_JSON2 = "commKong";
@@ -164,8 +176,6 @@ public class selectdata extends AsyncTask<String, Void, String> {
         String TAG_TIME = "meeting_TIME";
         String TAG_TITLE = "title";;
         String TAG_CMANE = "committee_NAME";
-
-
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
@@ -208,7 +218,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    to_list.add(td);
+                    td_list.add(td);
                 }
                 //to_list.add(td);
                 /*adapter.setCm_List(td);
@@ -247,14 +257,8 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    to_list.add(td);
+                    td_list.add(td);
                 }
-                /*adapter.setCm_List(td);
-                adapter.notifyDataSetChanged();*/
-                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
-                /*adapter.setArrayData(drugData);
-                adapter.notifyDataSetChanged();*/
-
 
             }
 
@@ -288,7 +292,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    to_list.add(td);
+                    td_list.add(td);
                 }
                 //cm_list.add(cm);
                 //Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
@@ -330,7 +334,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    to_list.add(td);
+                    td_list.add(td);
                 }
 
 
@@ -373,7 +377,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    to_list.add(td);
+                    td_list.add(td);
                 }
 
 
@@ -388,6 +392,224 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
             }
 
+
+            a1.setCm_List(td_list);
+            a1.notifyDataSetChanged();
+            Log.d("어뎁터a1", String.valueOf(a1.getItemCount()));//어뎁터에 세팅은 완료
+
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
+
+    }
+
+
+    public void showResult2(String searchText,List<String> filter) {
+
+        String TAG_JSON2 = "commKong";
+        String TAG_JSON1 = "bonsche";
+        String TAG_JSON3 = "commMain";
+        String TAG_JSON4 = "commSmall";
+        String TAG_JSON5 = "seminar";
+        String TAG_DATE = "meeting_DATE";
+        String TAG_TIME = "meeting_TIME";
+        String TAG_TITLE = "title";;
+        String TAG_CMANE = "committee_NAME";
+
+        Log.d("여기오나", filter.get(0));//어뎁터에 세팅은 완료
+
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            for(int j=0;j<filter.size();j++){
+                if(filter.get(j).equals(TAG_JSON1)){
+                    JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON1);
+                    for (int i = 0; i < jsonArray.length(); i++) { //본회의
+
+                        JSONObject item = jsonArray.getJSONObject(i);
+
+                        String date = item.getString(TAG_DATE);
+                        String time = item.getString(TAG_TIME);
+                        String title = item.getString(TAG_TITLE);
+                        String url = item.getString("link_URL");
+                        String name = item.getString("meetingsession");
+
+                        //이부분 생성자 선언
+                        totalInfo ti=new totalInfo();
+                        totalDate td=new totalDate();
+
+                        //생성자 세팅
+
+                        //bc.meetingsession=session;
+                        ti.type=TAG_JSON1;
+                        ti.title=title;
+                        ti.meeting_DATE=date;
+                        ti.meeting_TIME=time;
+
+                        td.type=TAG_JSON1;
+                        td.title=title;
+                        td.meeting_DATE=date;
+                        td.meeting_TIME=time;
+                        td.committee_NAME=name;
+                        td.url=url;
+
+                        ti_list.add(ti);
+                        if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                            to_list.add(td);
+                        }
+
+                    }
+                }
+
+                if(filter.get(j).equals(TAG_JSON2)){
+                    JSONArray jsonArray1 = jsonObject.getJSONArray(TAG_JSON2);
+                    for (int i = 0; i < jsonArray1.length(); i++) {//공청회
+
+                        JSONObject item = jsonArray1.getJSONObject(i);
+
+                        String date = item.getString(TAG_DATE);
+                        String time = item.getString(TAG_TIME);
+                        String title = item.getString(TAG_TITLE);
+                        String dept=item.getString(TAG_CMANE);
+                        String url=item.getString("link_URL2");
+                        //이부분 생성자 선언
+                        totalInfo ti=new totalInfo();
+                        totalDate td=new totalDate();
+
+                        //생성자 세팅
+                        ti.type=TAG_JSON2;
+                        ti.title=title;
+                        ti.meeting_DATE=date;
+                        ti.meeting_TIME=time;
+
+                        td.type=TAG_JSON2;
+                        td.title=title;
+                        td.meeting_DATE=date;
+                        td.meeting_TIME=time;
+                        td.committee_NAME=dept;
+                        td.url=url;
+
+                        ti_list.add(ti);
+                        if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                            to_list.add(td);
+                        }
+                    }
+
+                }
+                if(filter.get(j).equals(TAG_JSON3)){
+                    JSONArray jsonArray2 = jsonObject.getJSONArray(TAG_JSON3);
+                    for (int i = 0; i < jsonArray2.length(); i++) {//위원회별본
+                        JSONObject item = jsonArray2.getJSONObject(i);
+
+                        String date = item.getString(TAG_DATE);
+                        String time = item.getString(TAG_TIME);
+                        String title = item.getString(TAG_TITLE);
+                        String dept=item.getString(TAG_CMANE);
+                        String url=item.getString("link_URL2");
+
+                        //이부분 생성자 선언
+                        totalInfo ti=new totalInfo();
+                        totalDate td=new totalDate();
+
+                        //생성자 세팅
+
+                        ti.type=TAG_JSON3;
+                        ti.title=title;
+                        ti.meeting_DATE=date;
+                        ti.meeting_TIME=time;
+
+                        td.type=TAG_JSON3;
+                        td.title=title;
+                        td.meeting_DATE=date;
+                        td.meeting_TIME=time;
+                        td.committee_NAME=dept;
+                        td.url=url;
+
+                        ti_list.add(ti);
+                        Log.d("여기오나", searchText);//어뎁터에 세팅은 완료
+                        if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                            to_list.add(td);
+                        }
+                    }
+                }
+                if(filter.get(j).equals(TAG_JSON4)){
+                    JSONArray jsonArray3 = jsonObject.getJSONArray(TAG_JSON4);
+                    for (int i = 0; i < jsonArray3.length(); i++) {//소회의
+
+                        JSONObject item = jsonArray3.getJSONObject(i);
+
+                        String date = item.getString(TAG_DATE);
+                        String time = item.getString(TAG_TIME);
+                        String title = item.getString(TAG_TITLE);
+                        String dept=item.getString(TAG_CMANE);
+                        String url=item.getString("link_URL2");
+                        //이부분 생성자 선언
+                        totalInfo ti=new totalInfo();
+                        totalDate td=new totalDate();
+
+                        //생성자 세팅
+                        ti.type=TAG_JSON4;
+                        ti.title=title;
+                        ti.meeting_DATE=date;
+                        ti.meeting_TIME=time;
+
+                        td.type=TAG_JSON4;
+                        td.title=title;
+                        td.meeting_DATE=date;
+                        td.meeting_TIME=time;
+                        td.committee_NAME=dept;
+                        td.url=url;
+
+                        ti_list.add(ti);
+                        if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                            to_list.add(td);
+                        }
+                    }
+                }
+                if(filter.get(j).equals(TAG_JSON5)){
+                    JSONArray jsonArray4 = jsonObject.getJSONArray(TAG_JSON5);
+                    for (int i = 0; i < jsonArray4.length(); i++) {//세미나
+
+                        JSONObject item = jsonArray4.getJSONObject(i);
+
+                        String date = item.getString("sdate");
+                        String time = item.getString("stime");
+                        String title = item.getString(TAG_TITLE);
+                        String url = item.getString("link");
+                        String dept=item.getString("name");
+                        //이부분 생성자 선언
+                        totalInfo ti=new totalInfo();
+                        totalDate td=new totalDate();
+
+                        //생성자 세팅
+                        ti.type=TAG_JSON5;
+                        ti.title=title;
+                        ti.meeting_DATE=date;
+                        ti.meeting_TIME=time;
+
+                        td.type=TAG_JSON5;
+                        td.title=title;
+                        td.meeting_DATE=date;
+                        td.meeting_TIME=time;
+                        td.committee_NAME=dept;
+                        td.url=url;
+
+                        ti_list.add(ti);
+                        if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
+                            to_list.add(td);
+                        }
+
+                    }
+                }
+            }
 
             a1.setCm_List(to_list);
             a1.notifyDataSetChanged();
@@ -407,6 +629,9 @@ public class selectdata extends AsyncTask<String, Void, String> {
         }
 
     }
+
+
+
 
 
 
