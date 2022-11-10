@@ -57,6 +57,12 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
             @Override
             public void run() {
 
+                for (int i=0;i<tt_List.size();i++)
+                {
+                    holder.sub.setBackgroundResource(R.drawable.resize_star);
+                }
+
+
                 for(int i=0;i<read.ss_list.size();i++){
                     if(read.ss_list.get(i).getTitle().equals(tt_List.get(position).getTitle())){
                         is_sub=true;
