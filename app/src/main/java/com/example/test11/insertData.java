@@ -209,7 +209,6 @@ public class insertData extends AsyncTask<String, Void, String> {
 
             while ((line = bufferedReader.readLine()) != null) {
                 sb.append(line);
-
             }
 
             bufferedReader.close();

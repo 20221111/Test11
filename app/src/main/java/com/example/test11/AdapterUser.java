@@ -56,7 +56,8 @@ public class AdapterUser extends RecyclerView.Adapter<ViewHolder2> {//일정구�
                     public void run() {
 
                         if(insert.memoresult.equals("true")){
-                            notifyItemRemoved(pos);
+                            ss_List.remove(pos);
+                            notifyDataSetChanged();
                         }
 
                     }

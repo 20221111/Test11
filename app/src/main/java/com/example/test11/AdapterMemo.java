@@ -57,7 +57,17 @@ public class AdapterMemo extends RecyclerView.Adapter<ViewHolder3> {//메모정�
                 insertData insert = new insertData();
                 insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/pop/"+num, "6");
                 //갱신해줘야함
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
 
+                        if(insert.memoresult.equals("true")){
+                            mo_List.remove(pos);
+                            notifyDataSetChanged();
+                        }
+
+                    }
+                }, 1000);
             }
         });
     }

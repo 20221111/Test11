@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
@@ -60,8 +61,8 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
                     if(read.ss_list.get(i).getTitle().equals(tt_List.get(position).getTitle())){
                         is_sub=true;
                         Log.d("구독유무", String.valueOf(position)+":"+String.valueOf(is_sub));
-                        //굳이 리스트 안 쓰고 for문 안에서 버튼모양 바꾸셔도 될 것 같아요 position 넣어서
-                        sub.add(position);//리스트에 구독 된 일정의 포지션 넣어둠
+                        holder.sub.setBackgroundResource(R.drawable.resize_fillstar);
+                       // sub.add(position);//리스트에 구독 된 일정의 포지션 넣어둠
 
                     }
                 }
@@ -81,6 +82,7 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
                 int pos= holder.getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
                 }
+                holder.sub.setBackgroundResource(R.drawable.resize_fillstar);
                 sublist[1]=ma.memberid;
                 sublist[0]=tt_List.get(pos).getMeeting_DATE();
                 sublist[2]=tt_List.get(pos).getTitle();
