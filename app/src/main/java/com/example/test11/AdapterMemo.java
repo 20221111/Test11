@@ -4,10 +4,13 @@ package com.example.test11;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +22,7 @@ public class AdapterMemo extends RecyclerView.Adapter<ViewHolder3> {//메모정�
     ArrayList<memodata> mo_List;//textview3 날짜
 
     Activity activity;
+    MainActivity ma=new MainActivity();
 
     public AdapterMemo(ArrayList<memodata> mo_List) {
         this.mo_List=mo_List;
@@ -39,7 +43,7 @@ public class AdapterMemo extends RecyclerView.Adapter<ViewHolder3> {//메모정�
 
         holder.contents.setText(mo_List.get(position).getContents());
         holder.time.setText(mo_List.get(position).getDate());
-        /*holder.button.setOnClickListener(new View.OnClickListener(){
+        holder.button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 int pos= holder.getAdapterPosition();
@@ -51,11 +55,11 @@ public class AdapterMemo extends RecyclerView.Adapter<ViewHolder3> {//메모정�
 
                 //excute 진행하는 부분
                 insertData insert = new insertData();
-                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/push/"+sublist[3]+"?"+"date="+sublist[0]+"&id="+sublist[1]+"&title="+sublist[2], "4");
-
+                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/pop/"+num, "6");
+                //갱신해줘야함
 
             }
-        });*/
+        });
     }
     @Override
     public int getItemCount() {

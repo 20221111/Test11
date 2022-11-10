@@ -77,6 +77,17 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
     Event ev4;
     Event ev5;
     Event ev6;
+    selectdata read;
+    insertData read2;
+    String Check="false";
+    Boolean b_c=false;
+    Boolean k_c=false;
+    Boolean m_c=false;
+    Boolean sm_c=false;
+    Boolean s_c=false;
+
+
+    List<String> Filter=new ArrayList<>();
 
 
     @Nullable
@@ -87,42 +98,6 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
 
 
-        //필터링 팝업
-        Button NewAccount = v.findViewById(R.id.test);
-        NewAccount.setOnClickListener(new View.OnClickListener() {
-
-                                          @Override
-                                          public void onClick(View v) {
-                                              final View popupView = getLayoutInflater().inflate(R.layout.popup, null);
-                                              final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                              builder.setView(popupView);
-
-
-
-
-
-                                              final AlertDialog alertDialog = builder.create();
-                                              alertDialog.show();
-
-                                              //확인버튼
-                                              Button btnInsert = popupView.findViewById(R.id.ok);
-                                              btnInsert.setOnClickListener(new Button.OnClickListener(){
-                                                  public void onClick(View v){
-
-                                                  }
-                                              });
-
-                                              //취소버튼
-                                              Button btnCancel = popupView.findViewById(R.id.cancel);
-                                              btnCancel.setOnClickListener(new Button.OnClickListener(){
-                                                  public void onClick(View v){
-                                                      alertDialog.dismiss();
-                                                  }
-                                              });
-                                          }
-                                      });
-
-            //ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
         final CompactCalendarView compactCalendarView = (CompactCalendarView) v.findViewById(R.id.compactcalendar_view);
 
@@ -146,11 +121,12 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
         joinmember jm=new joinmember();
         //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
 
-        selectdata read = new selectdata();
 
+
+        read = new selectdata();
         read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
 
-        insertData read2 = new insertData();
+        read2 = new insertData();
         read2.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
 
         RecyclerView recyclerview;
@@ -162,7 +138,25 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
         // recyclerview에 adapter 적용
         recyclerview.setAdapter(read.a1); //selectData에서 add해도 성공
         read.a1.notifyDataSetChanged();
-        //색깔
+
+        if(Check.equals("true")){
+
+            for(int i=0;i<Filter.size();i++){
+                if(Filter.size()==4){
+                    break;
+                }
+                if(read.a1.tt_List.get(i).getType()!=Filter.get(i)){
+                    read.a1.tt_List.remove(i);
+                }
+                /*if(read1.a1.tt_List.get(i).getType()!=Filter.get(i)){
+                    read1.a1.tt_List.remove(i);
+
+                }*/
+            }
+            read.a1.notifyDataSetChanged();
+            //read1.a1.notifyDataSetChanged();
+
+        }
 
 
         new Handler().postDelayed(new Runnable() {
@@ -171,7 +165,6 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
 
                 Log.d("어뎁터왔나", String.valueOf(read.a1.getItemCount()));//어뎁터에 세팅은 완료
-                selectdata st =new selectdata();
 
                 //Date currentDay = null;
                 String data;
@@ -459,11 +452,79 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                         }
 
                     }
-                }, 5000);
+                }, 1000);
 
             }
 
         });
+
+        //필터링 팝업
+        Button NewAccount = v.findViewById(R.id.test);
+        NewAccount.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final View popupView = getLayoutInflater().inflate(R.layout.popup, null);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setView(popupView);
+
+
+                final AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                CheckBox ck_bon=popupView.findViewById(R.id.born);//본회의
+                CheckBox ck_main=popupView.findViewById(R.id.all);//전체회의
+                CheckBox ck_kong=popupView.findViewById(R.id.gong);//공청회
+                CheckBox ck_small=popupView.findViewById(R.id.small);//소회의
+                CheckBox ck_semi=popupView.findViewById(R.id.semi);//세미나
+
+                if (ck_bon.isChecked()) {
+                    Filter.add("bonsche");
+                    b_c=true;
+                }
+
+                if (ck_main.isChecked()) {
+                    Filter.add("commMain");
+                    m_c=true;
+                }
+
+                if (ck_kong.isChecked()) {
+                    Filter.add("commKong");
+                    k_c=true;
+                }
+
+                if (ck_small.isChecked()) {
+                    Filter.add("commSmall");
+                    sm_c=true;
+                }
+
+                if (ck_semi.isChecked()) {
+                    Filter.add("seminar");
+                    s_c=true;
+                }
+
+                //확인버튼
+                Button btnInsert = popupView.findViewById(R.id.ok);
+                btnInsert.setOnClickListener(new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Check="true";
+                        alertDialog.dismiss();
+
+                    }
+                });
+
+                //취소버튼
+                Button btnCancel = popupView.findViewById(R.id.cancel);
+                btnCancel.setOnClickListener(new Button.OnClickListener(){
+                    public void onClick(View v){
+                        alertDialog.dismiss();
+                    }
+                });
+            }
+        });
+
+        //ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+
 
         return v;
 
