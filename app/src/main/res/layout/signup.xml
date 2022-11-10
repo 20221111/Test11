@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/DeepBlue">
+    android:background="#979797">
 
 
     <ImageView
@@ -166,7 +166,8 @@
         android:autoSizeMaxTextSize="24dp"
         android:gravity="center"
         android:text="SIGN UP"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="28dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/DeepBlue">
+    android:background="#979797">
 
 
     <ImageView
@@ -50,8 +50,9 @@
         android:autoSizeMaxTextSize="24dp"
         android:gravity="center"
         android:text="개인정보수정"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#80CBC4">
+        android:background="#979797">
 
 
         <ImageView
@@ -178,6 +178,7 @@
             android:layout_marginTop="16dp"
             android:text="메뉴"
             android:textColor="@color/black"
+            android:textStyle="bold"
 
             android:textSize="25dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView5"
