@@ -56,10 +56,10 @@ public class search extends Fragment {
             }
         });
 
-        insertData read = new insertData();
-        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Search/"+findS, "8");
-        recyclerview_search.setAdapter(read.as); //selectData에서 add해도 성공
-        read.as.notifyDataSetChanged();
+        //insertData read = new insertData();
+        //read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Search/"+findS, "8");
+        //recyclerview_search.setAdapter(read.as); //selectData에서 add해도 성공
+        //read.as.notifyDataSetChanged();
 
         return v;
 
