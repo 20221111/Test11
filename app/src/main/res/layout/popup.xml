@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="440dp"
         android:background="#EEF0F0"
         android:orientation="vertical"
@@ -16,10 +16,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
         <CheckBox
-            android:id="@+id/check1"
+            android:id="@+id/born"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="본회의"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.458"
@@ -28,10 +29,11 @@
             app:layout_constraintVertical_bias="0.136" />
 
         <CheckBox
-            android:id="@+id/check2"
+            android:id="@+id/gong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="공청회"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.458"
@@ -40,10 +42,11 @@
             app:layout_constraintVertical_bias="0.375" />
 
         <CheckBox
-            android:id="@+id/check3"
+            android:id="@+id/all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체회의"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,10 +54,23 @@
             app:layout_constraintVertical_bias="0.866" />
 
         <CheckBox
-            android:id="@+id/check4"
+            android:id="@+id/small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="소회의"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.634" />
+        <CheckBox
+            android:id="@+id/semi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="세미나"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.458"

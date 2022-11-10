@@ -29,6 +29,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +54,7 @@ import java.util.concurrent.Executors;
 
 
 //외부에서 new Frag1 호출 시
-public class home extends Fragment implements View.OnClickListener {
+public class home extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private static final String TAG = "MainActivity";
 
@@ -66,20 +68,28 @@ public class home extends Fragment implements View.OnClickListener {
     selectdata read1;
     boolean scroll=false;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         super.onCreate(savedInstanceState);
 
+
+
         //필터링 팝업
         Button NewAccount = v.findViewById(R.id.test);
         NewAccount.setOnClickListener(new View.OnClickListener() {
+
                                           @Override
                                           public void onClick(View v) {
                                               final View popupView = getLayoutInflater().inflate(R.layout.popup, null);
                                               final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                                               builder.setView(popupView);
+
+
+
+
 
                                               final AlertDialog alertDialog = builder.create();
                                               alertDialog.show();
@@ -88,9 +98,7 @@ public class home extends Fragment implements View.OnClickListener {
                                               Button btnInsert = popupView.findViewById(R.id.ok);
                                               btnInsert.setOnClickListener(new Button.OnClickListener(){
                                                   public void onClick(View v){
-                                                      /*
-                                                      필터링 목록 저장하여 화면에 반환하는 코드 생성
-                                                       */
+
                                                   }
                                               });
 
@@ -406,6 +414,11 @@ public class home extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
     }
 }
