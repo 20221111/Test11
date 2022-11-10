@@ -408,9 +408,6 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
     }
 
-    private void showResult3() throws JSONException {
-
-    }
 
 
 }
