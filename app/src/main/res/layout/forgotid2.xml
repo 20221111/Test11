@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/DeepBlue">
+    android:background="#979797">
 
     <!--    <LinearLayout-->
     <!--        android:layout_width="match_parent"-->
@@ -97,8 +97,9 @@
         android:autoSizeMaxTextSize="24dp"
         android:gravity="center"
         android:text="아이디 찾기"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="28dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

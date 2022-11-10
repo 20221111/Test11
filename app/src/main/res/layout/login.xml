@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/DeepBlue"
+    android:background="#979797"
     tools:context=".Login">
 
     <ImageView
@@ -43,8 +43,9 @@
         android:autoSizeMaxTextSize="24dp"
         android:gravity="center"
         android:text="LOGIN"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="28dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

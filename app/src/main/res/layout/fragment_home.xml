@@ -30,12 +30,6 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/test"
-                android:layout_width="29dp"
-                android:layout_height="30dp"
-                android:background="@drawable/icon_filter" />
-
             <TextView
                 android:id="@+id/commbon"
                 android:layout_width="15dp"
@@ -117,6 +111,13 @@
             app:compactCalendarTargetHeight="250dp"
             app:compactCalendarTextColor="#FF000000"
             app:compactCalendarTextSize="12sp" />
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="29dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_filter"
+            android:layout_gravity="end"/>
 
         <Button
             android:id="@+id/textView_result2"
