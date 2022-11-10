@@ -3,6 +3,8 @@ package  com.example.test11;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,7 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
         holder.title.setText(tt_List.get(position).getTitle());
         //holder.date.setText(tt_List.get(position).getMeeting_DATE());
         holder.time.setText(tt_List.get(position).getMeeting_TIME());
+        holder.com_name.setText(tt_List.get(position).getCommittee_NAME());
         holder.sub.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -62,6 +65,20 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
                 //commMain cm =new commMain();
 
 
+            }
+        });
+
+        holder.url.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                int pos= holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                }
+
+                intent.setData(Uri.parse(tt_List.get(pos).getUrl()));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
             }
         });
     }
