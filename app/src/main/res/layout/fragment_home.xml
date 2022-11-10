@@ -30,70 +30,112 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
+            <Button
+                android:id="@+id/test"
+                android:layout_width="29dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:background="@drawable/icon_filter" />
+
+
+            <ImageView
+                android:id="@+id/bon_color"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:src="@drawable/commbon" />
+
             <TextView
                 android:id="@+id/commbon"
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="  본회의"
-                android:textSize="15dp"
+                android:text="본회의"
+                android:textSize="14dp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/bon_color"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/commbon" />
-
-            <TextView
-                android:id="@+id/commkong"
-                android:layout_width="22dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="    공청회"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/kong_color"
-                android:layout_width="2dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/commkong" />
-
-            <TextView
-                android:id="@+id/commmain"
-                android:layout_width="37dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="    전체회의"
-                android:textSize="15dp"
-                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/main_color"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:src="@drawable/commmain" />
 
             <TextView
-                android:id="@+id/commsmall"
-                android:layout_width="23dp"
+                android:id="@+id/commmain"
+                android:layout_width="29dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="    소회의"
-                android:textSize="15dp"
+                android:text="전체회의"
+                android:textSize="14dp"
                 android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/kong_color"
+                android:layout_width="2dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:src="@drawable/commkong" />
+
+            <TextView
+                android:id="@+id/commkong"
+                android:layout_width="13dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="공청회"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
 
             <ImageView
                 android:id="@+id/small_color"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:src="@drawable/commsmall" />
 
+            <TextView
+                android:id="@+id/commsmall"
+                android:layout_width="14dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="소회의"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/semina_color"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:src="@drawable/commsemina" />
+
+            <TextView
+                android:id="@+id/commmsemina"
+                android:layout_width="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="세미나"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/memo_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:src="@drawable/commmemo" />
+
+            <TextView
+                android:id="@+id/commmemo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="메모"
+                android:textSize="14dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -112,12 +154,6 @@
             app:compactCalendarTextColor="#FF000000"
             app:compactCalendarTextSize="12sp" />
 
-        <Button
-            android:id="@+id/test"
-            android:layout_width="29dp"
-            android:layout_height="30dp"
-            android:background="@drawable/icon_filter"
-            android:layout_gravity="end"/>
 
         <Button
             android:id="@+id/textView_result2"
