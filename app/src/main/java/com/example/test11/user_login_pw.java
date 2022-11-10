@@ -27,7 +27,7 @@ public class user_login_pw extends AppCompatActivity {//패스워드만 수정
         EditText curr_pass=findViewById(R.id.c_password);
         EditText new_pass=findViewById(R.id.editText3);
         EditText new_passcheck=findViewById(R.id.newpassword);
-        curr_pass.setOnKeyListener(new View.OnKeyListener() {
+        curr_pass.setOnKeyListener(new View.OnKeyListener() { //현재 비밀번호
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {//엔터 누르면 키보드 내려감 이뮬레이터에서는 안됨 노트북 엔터
 
@@ -39,7 +39,7 @@ public class user_login_pw extends AppCompatActivity {//패스워드만 수정
                 return false;
             }
         });
-        new_pass.setOnKeyListener(new View.OnKeyListener() {
+        new_pass.setOnKeyListener(new View.OnKeyListener() { //새로운 비밀번호
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {//엔터 누르면 키보드 내려감 이뮬레이터에서는 안됨 노트북 엔터
 
@@ -51,7 +51,7 @@ public class user_login_pw extends AppCompatActivity {//패스워드만 수정
                 return false;
             }
         });
-        new_passcheck.setOnKeyListener(new View.OnKeyListener() {
+        new_passcheck.setOnKeyListener(new View.OnKeyListener() { //새로운 비밀번호 확인
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {//엔터 누르면 키보드 내려감 이뮬레이터에서는 안됨 노트북 엔터
 
@@ -85,9 +85,14 @@ public class user_login_pw extends AppCompatActivity {//패스워드만 수정
                                 case "true":
                                     Intent intent = new Intent(getApplicationContext(), CLD.class);
                                     startActivity(intent);
+                                    Toast.makeText(user_login_pw.this, "비밀번호가 변경됐습니다.", Toast.LENGTH_SHORT).show();
                                     break;
                                 case "false":
                                     //이부분 토스트추가+ 입력된 내용 초기화
+                                    Toast.makeText(user_login_pw.this, "비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
+                                    curr_pass.setText(null);
+                                    new_pass.setText(null);
+                                    new_passcheck.setText(null);
                                     break;
 
                             }

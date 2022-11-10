@@ -28,6 +28,7 @@ public class user extends Fragment {
 
         //나의 메모 리사이클러뷰
         LinearLayoutManager linearLayoutManager;
+
         RecyclerView recyclerview_memo = (RecyclerView) v.findViewById(R.id.listview_memo);
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_memo.setLayoutManager(linearLayoutManager);
@@ -36,14 +37,18 @@ public class user extends Fragment {
         RecyclerView recyclerview_usersub = (RecyclerView) v.findViewById(R.id.listview_usersub);
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_usersub.setLayoutManager(linearLayoutManager);
-        insertData read = new insertData();
 
-        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/Show/"+ma.memberid, "5"); //구독한일정 띄우는 api
+
+
+        //구독한일정 띄우는 api
+        insertData read = new insertData();
+        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/Show/"+ma.memberid, "5");
         recyclerview_usersub.setAdapter(read.au);//selectData에서 add해도 성공
         read.au.notifyDataSetChanged();
 
+        //메모 띄우는 api
         insertData read1 = new insertData();
-        read1.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");//메모 띄우는 api
+        read1.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
         recyclerview_memo.setAdapter(read1.am);//selectData에서 add해도 성공
         read1.am.notifyDataSetChanged();
 

@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
                             case "false":
                                 Log.d("로그인", "로그인실패");
+                                edit_pw.setText(null);
                                 Toast.makeText(MainActivity.this, "닉네임과 비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
                                 break;
 

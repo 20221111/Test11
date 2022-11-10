@@ -14,12 +14,14 @@
             android:layout_height="wrap_content"
             android:hint="검색어를 입력하세요."/>
 
-        <ListView
-            android:id="@+id/listView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listview_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="#999999"
-            android:dividerHeight="1dp">
-        </ListView>
+            android:layout_height="200dp"
+            android:background="#D8D8D8"
+            android:gravity="center"
+            android:text="검색"
+            android:textAlignment="center"
+            android:textColor="#050505"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
