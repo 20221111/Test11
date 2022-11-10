@@ -4,12 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:orientation="horizontal"
+        android:background="@drawable/border">
             <TextView
                 android:id="@+id/textView3"
                 style="@style/recyclerview_contents"
@@ -21,14 +19,5 @@
                 style="@style/recyclerview_contents"
                 android:layout_width="228dp"
                 android:text="제목" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                style="@style/recyclerview_contents" />
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
