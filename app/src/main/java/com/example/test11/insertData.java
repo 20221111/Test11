@@ -125,6 +125,7 @@ public class insertData extends AsyncTask<String, Void, String> {
         String em=jm.getEmail();
         String name=jm.getName();
         String sec=jm.getSecurity();
+
         if (params[1] == "0") {//회원가입
             Log.d("아이디", "비밀번호 : "+jm.id+jm.password);
             join[0]="email="+em;

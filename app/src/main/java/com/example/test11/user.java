@@ -1,6 +1,5 @@
 package com.example.test11;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,15 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class user extends Fragment {
@@ -30,6 +25,7 @@ public class user extends Fragment {
         MainActivity ma=new MainActivity();
         TextView name = (TextView) v.findViewById(R.id.editText8);
         name.setText(ma.memberid);
+
         //나의 메모 리사이클러뷰
         LinearLayoutManager linearLayoutManager;
         RecyclerView recyclerview_memo = (RecyclerView) v.findViewById(R.id.listview_memo);
@@ -74,8 +70,6 @@ public class user extends Fragment {
         memo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 recyclerview_memo.setVisibility(View.VISIBLE);
                 recyclerview_usersub.setVisibility(View.GONE);
                 rec_memo.setVisibility(View.VISIBLE);
@@ -111,6 +105,7 @@ public class user extends Fragment {
         });
         return v;
     }
+
 
 //    public void addLayout() {
 //        LayoutInflater inflater = (LayoutInflater)getSystemService(

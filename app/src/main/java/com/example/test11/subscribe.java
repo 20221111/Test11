@@ -7,6 +7,10 @@ public class subscribe {
     String id;
     String num;
 
+    public String getNum() {
+        return num;
+    }
+    
     public String getType() {
         return type;
     }

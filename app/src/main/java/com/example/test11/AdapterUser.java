@@ -36,25 +36,17 @@ public class AdapterUser extends RecyclerView.Adapter<ViewHolder2> {//일정구�
 
         holder.title.setText(ss_List.get(position).getTitle());
         holder.time.setText(ss_List.get(position).getDate());
-        /*holder.sub.setOnClickListener(new View.OnClickListener(){
-            @Override
+        holder.button.setOnClickListener(new View.OnClickListener(){
+            @Override//구독 삭제
             public void onClick(View view) {
-               *//* int pos= holder.getAdapterPosition();
+                int pos= holder.getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
                 }
-                sublist[1]=jm.getId();
-                sublist[0]=tt_List.get(pos).getMeeting_DATE();
-                sublist[2]=tt_List.get(pos).getTitle();
-                sublist[3]=tt_List.get(pos).getType();
-                Log.d("클릭이벤트", tt_List.get(pos).getTitle());
 
-                insertData insert = new insertData();
-                insert.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/push/"+sublist[3]+"?"+"date="+sublist[0]+"&id="+sublist[1]+"&title="+sublist[2], "4");
-                commMain cm =new commMain();
-
-*//*
+                String num=ss_List.get(pos).getNum();
+                Log.d("클릭이벤트", num);
             }
-        });*/
+        });
     }
     @Override
     public int getItemCount() {
