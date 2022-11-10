@@ -67,6 +67,16 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
     public String clickD;
     selectdata read1;
     boolean scroll=false;
+    Event ev1;
+    Date currentDay = null;
+    Date currentDay1 = null;
+    Long currentLong;
+    Long currentLong1;
+    Event ev2;
+    Event ev3;
+    Event ev4;
+    Event ev5;
+    Event ev6;
 
 
     @Nullable
@@ -122,6 +132,7 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
 
         ArrayList<commMain> cm_List;
+        MainActivity ma=new MainActivity();
 
         long mNow;
         Date mDate;
@@ -139,10 +150,10 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
         read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
 
-        cm_List = new ArrayList<>();
+        insertData read2 = new insertData();
+        read2.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
+
         RecyclerView recyclerview;
-
-
 
         recyclerview = (RecyclerView) v.findViewById(R.id.listView_result);
         LinearLayoutManager linearLayoutManager;
@@ -151,6 +162,7 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
         // recyclerview에 adapter 적용
         recyclerview.setAdapter(read.a1); //selectData에서 add해도 성공
         read.a1.notifyDataSetChanged();
+        //색깔
 
 
         new Handler().postDelayed(new Runnable() {
@@ -161,7 +173,7 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                 Log.d("어뎁터왔나", String.valueOf(read.a1.getItemCount()));//어뎁터에 세팅은 완료
                 selectdata st =new selectdata();
 
-                Date currentDay = null;
+                //Date currentDay = null;
                 String data;
                 //Log.d("날짜확인", String.valueOf(read.ti_list.size()));
                 try {
@@ -169,24 +181,38 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                     for(int i=0;i<read.ti_list.size();i++){
                         currentDay = simpleDate.parse(read.ti_list.get(i).getMeeting_DATE());
                         //Log.d("날짜확인", read.ti_list.get(i).getMeeting_DATE());
-                        Long currentLong = currentDay.getTime();
+                        currentLong = currentDay.getTime();
+                        currentLong1=currentDay.getTime();
                         if(read.ti_list.get(i).getType().equals("bonsche")){
-                            Event ev2 = new Event(Color.RED, currentLong,read.ti_list.get(i).getTitle());
+                            ev2 = new Event(Color.RED, currentLong,read.ti_list.get(i).getTitle());
                             compactCalendarView.addEvent(ev2);
                         }
                         else if(read.ti_list.get(i).getType().equals("commKong")){
-                            Event ev3 = new Event(Color.LTGRAY, currentLong,read.ti_list.get(i).getTitle());
+                            ev3 = new Event(Color.LTGRAY, currentLong,read.ti_list.get(i).getTitle());
                             compactCalendarView.addEvent(ev3);
                         }
                         else if(read.ti_list.get(i).getType().equals("commMain")){
-                            Event ev4 = new Event(Color.BLACK, currentLong,read.ti_list.get(i).getTitle());
+                            ev4 = new Event(Color.BLACK, currentLong,read.ti_list.get(i).getTitle());
                             compactCalendarView.addEvent(ev4);
                         }
                         else if(read.ti_list.get(i).getType().equals("commSmall")){
-                            Event ev5 = new Event(Color.CYAN, currentLong,read.ti_list.get(i).getTitle());
+                            ev5 = new Event(Color.MAGENTA, currentLong,read.ti_list.get(i).getTitle());
                             compactCalendarView.addEvent(ev5);
                         }
 
+                        else if(read.ti_list.get(i).getType().equals("seiminar")){
+                            ev6 = new Event(Color.BLUE, currentLong,read.ti_list.get(i).getTitle());
+                            compactCalendarView.addEvent(ev6);
+                        }
+
+                    }
+
+                    for(int i=0;i<read2.mo_list.size();i++){
+                        currentDay = simpleDate.parse(read2.mo_list.get(i).getDate());
+                        Long currentLong = currentDay.getTime();
+                        ev1 = new Event(Color.GREEN, currentLong, read2.mo_list.get(i).getContents());
+                        //Log.d("메모 점찍기 확인 ", read2.mo_list.get(i).getContents());
+                        compactCalendarView.addEvent(ev1);
                     }
 
                     Log.d(TAG, "태그 currentDay : " + currentDay);
@@ -264,9 +290,8 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                                                                 Long currentLong = currentDay.getTime();
                                                                 Log.d(TAG, "태그 currentLong : " + currentLong);
 
-                                                                Event ev1 = new Event(Color.GREEN, currentLong, currentDay + " : " + editText.getText().toString());
-                                                                //Event ev2 = new Event(Color.GREEN, currentLong, clickDate + " : " + editText.getText().toString());
-                                                                compactCalendarView.addEvent(ev1);
+                                                                Event ev7 = new Event(Color.GREEN, currentLong, currentDay + " : " + editText.getText().toString());
+                                                                compactCalendarView.addEvent(ev7);
                                                                 //textView_result.setText(clickDate + " : " + editText.getText().toString());
                                                                 Toast.makeText(getActivity(), "일정이 저장되었습니다.", Toast.LENGTH_SHORT).show();
                                                                 break;
@@ -357,8 +382,14 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                 ExecutorService THREAD_POOL= Executors.newFixedThreadPool(12);
                 read1=new selectdata();
                 read1.executeOnExecutor(THREAD_POOL,"http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
+
+                insertData read2 = new insertData();
+                read2.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
+
                 recyclerview.setAdapter(read1.a1); //selectData에서 add해도 성ㄷ공
                 read1.a1.notifyDataSetChanged();
+
+
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -366,42 +397,69 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                         //Log.d("어뎁터왔나", String.valueOf(read1.a1.getItemCount()));//어뎁터에 세팅은 완료
                         //selectdata st =new selectdata();
 
-                        Date currentDay = null;
+                        //Date currentDay1 = null;
+
+                        compactCalendarView.removeAllEvents();
+
+
                         String data;
                         Log.d("날짜확인", String.valueOf(read1.ti_list.size()));
                         try {
                             // .parse 함수 : Parses text from a string to produce a Date (문자열에서 텍스트를 분석하여 날짜 생성)
                             for(int i=0;i<read1.ti_list.size();i++){
-                                currentDay = simpleDate.parse(read1.ti_list.get(i).getMeeting_DATE());
+                                currentDay1 = simpleDate.parse(read1.ti_list.get(i).getMeeting_DATE());
+                                currentLong1 = currentDay1.getTime();
                                 //Log.d("날짜확인", read1.ti_list.get(i).getMeeting_DATE());
-                                Long currentLong = currentDay.getTime();
+                                //compactCalendarView.removeEvents(currentLong1);
+
                                 if(read1.ti_list.get(i).getType().equals("bonsche")){
-                                    Event ev2 = new Event(Color.RED, currentLong,read1.ti_list.get(i).getTitle());
-                                    compactCalendarView.addEvent(ev2);
+
+                                    Event ev8 = new Event(Color.RED, currentLong1,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev8);
+                                    //compactCalendarView.addEvent(ev2);
                                 }
                                 else if(read1.ti_list.get(i).getType().equals("commKong")){
-                                    Event ev3 = new Event(Color.LTGRAY, currentLong,read1.ti_list.get(i).getTitle());
-                                    compactCalendarView.addEvent(ev3);
+                                    Event ev9 = new Event(Color.LTGRAY, currentLong1,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev9);
+                                    //compactCalendarView.addEvent(ev3);
                                 }
                                 else if(read1.ti_list.get(i).getType().equals("commMain")){
-                                    Event ev4 = new Event(Color.BLACK, currentLong,read1.ti_list.get(i).getTitle());
-                                    compactCalendarView.addEvent(ev4);
+                                    Event ev10 = new Event(Color.BLACK, currentLong1,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev10);
+                                    //compactCalendarView.addEvent(ev4);
                                 }
                                 else if(read1.ti_list.get(i).getType().equals("commSmall")){
-                                    Event ev5 = new Event(Color.CYAN, currentLong,read1.ti_list.get(i).getTitle());
-                                    compactCalendarView.addEvent(ev5);
+                                    Event ev11 = new Event(Color.MAGENTA, currentLong1,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev11);
+                                    //compactCalendarView.addEvent(ev5);
+                                }
+
+                                else if(read1.ti_list.get(i).getType().equals("seiminar")){
+                                    Event ev12 = new Event(Color.BLUE, currentLong1,read1.ti_list.get(i).getTitle());
+                                    compactCalendarView.addEvent(ev12);
+                                    //compactCalendarView.addEvent(ev12);
                                 }
 
                             }
 
+                            for(int i=0;i<read2.mo_list.size();i++){
+                                currentDay = simpleDate.parse(read2.mo_list.get(i).getDate());
+                                Long currentLong = currentDay.getTime();
+                                ev1 = new Event(Color.GREEN, currentLong, read2.mo_list.get(i).getContents());
+                                //Log.d("메모 점찍기 확인 ", read2.mo_list.get(i).getContents());
+                                compactCalendarView.addEvent(ev1);
+                            }
+
                             Log.d(TAG, "태그 currentDay : " + currentDay);
+
+                            Log.d(TAG, "태그 currentDay : " + currentDay1);
 
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
 
                     }
-                }, 1000);
+                }, 5000);
 
             }
 
