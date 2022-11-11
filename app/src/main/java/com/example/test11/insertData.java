@@ -34,11 +34,14 @@ public class insertData extends AsyncTask<String, Void, String> {
     int postParameters=0;
     ArrayList<subscribe> ss_list=new ArrayList<>();
     ArrayList<memodata> mo_list=new ArrayList<>();
+    ArrayList<totalDate> to_list=new ArrayList<>();
     AdapterUser au=new AdapterUser(ss_list);
     AdapterMemo am=new AdapterMemo(mo_list);
     String findpw;
     String findid;
     String memoresult="false";
+
+    Adaptersearch as=new Adaptersearch(to_list);
 
 
 
@@ -83,7 +86,7 @@ public class insertData extends AsyncTask<String, Void, String> {
 
                     break;
                 case 1:
-                    Log.d("데이터소통-구독", Result);
+                    //Log.d("데이터소통-구독", Result);
                     showResult3();
                     break;
                 case 2://아이디찾기
@@ -100,9 +103,13 @@ public class insertData extends AsyncTask<String, Void, String> {
                     showResult5();
                     break;
                 case 5:
-                    Log.d("데이터소통-메모", Result);
+                    //Log.d("데이터소통-메모", Result);
                     showResult6();
                     break;
+                case 6:
+                    showResult7();
+                    break;
+
 
 
 
@@ -160,6 +167,9 @@ public class insertData extends AsyncTask<String, Void, String> {
         }
         else if(params[1]=="7"){//메모불러오기
             postParameters=5;
+        }
+        else if(params[1]=="8"){//검색
+            postParameters=6;
         }
 
 
@@ -403,6 +413,169 @@ public class insertData extends AsyncTask<String, Void, String> {
             am.setCm_List(mo_list);
             am.notifyDataSetChanged();
             Log.d("어뎁터am", String.valueOf(am.getItemCount()));//어뎁터에 세팅은 완료
+
+
+
+        }catch(NullPointerException n){
+
+            Log.d("과연", "showResult : ",n);
+
+
+        } catch (JSONException e) {
+
+            Log.d("과연", "showResult : ", e);
+
+        }
+
+    }
+
+    public void showResult7() {
+
+        String TAG_JSON2 = "commKong";
+        String TAG_JSON1 = "bonsche";
+        String TAG_JSON3 = "commMain";
+        String TAG_JSON4 = "commSmall";
+        String TAG_JSON5 = "seminar";
+        String TAG_DATE = "meeting_DATE";
+        String TAG_TIME = "meeting_TIME";
+        String TAG_TITLE = "title";;
+        String TAG_CMANE = "committee_NAME";
+
+
+
+        try {
+            JSONObject jsonObject = new JSONObject(Result);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON1);
+            JSONArray jsonArray1 = jsonObject.getJSONArray(TAG_JSON2);
+            JSONArray jsonArray2 = jsonObject.getJSONArray(TAG_JSON3);
+            JSONArray jsonArray3 = jsonObject.getJSONArray(TAG_JSON4);
+            JSONArray jsonArray4 = jsonObject.getJSONArray(TAG_JSON5);
+
+            //totalDate td=new totalDate();
+            //to_list.clear();
+            for (int i = 0; i < jsonArray.length(); i++) { //본회의
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+                String url = item.getString("link_URL");
+                String name = item.getString("meetingsession");
+
+                totalDate td=new totalDate();
+
+                td.type=TAG_JSON1;
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=name;
+                td.url=url;
+
+                to_list.add(td);
+
+            }
+
+            for (int i = 0; i < jsonArray1.length(); i++) {//공청회
+
+                JSONObject item = jsonArray1.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+                String dept=item.getString(TAG_CMANE);
+                String url=item.getString("link_URL2");
+                //이부분 생성자 선언
+                totalDate td=new totalDate();
+
+                td.type=TAG_JSON2;
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=dept;
+                td.url=url;
+
+                to_list.add(td);
+
+
+            }
+
+            for (int i = 0; i < jsonArray2.length(); i++) {//위원회별본
+
+                JSONObject item = jsonArray2.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+                String dept=item.getString(TAG_CMANE);
+                String url=item.getString("link_URL2");
+
+
+                totalDate td=new totalDate();
+
+
+                td.type=TAG_JSON3;
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=dept;
+                td.url=url;
+
+                to_list.add(td);
+
+            }
+
+            for (int i = 0; i < jsonArray3.length(); i++) {//소회의
+
+                JSONObject item = jsonArray3.getJSONObject(i);
+
+                String date = item.getString(TAG_DATE);
+                String time = item.getString(TAG_TIME);
+                String title = item.getString(TAG_TITLE);
+                String dept=item.getString(TAG_CMANE);
+                String url=item.getString("link_URL2");
+                //이부분 생성자 선언
+                totalInfo ti=new totalInfo();
+                totalDate td=new totalDate();
+
+                td.type=TAG_JSON4;
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=dept;
+                td.url=url;
+                to_list.add(td);
+
+            }
+
+            for (int i = 0; i < jsonArray4.length(); i++) {//세미나
+
+                JSONObject item = jsonArray4.getJSONObject(i);
+
+                String date = item.getString("sdate");
+                String time = item.getString("stime");
+                String title = item.getString(TAG_TITLE);
+                String url = item.getString("link");
+                String dept=item.getString("name");
+                //이부분 생성자 선언
+
+                totalDate td=new totalDate();
+
+                td.type=TAG_JSON5;
+                td.title=title;
+                td.meeting_DATE=date;
+                td.meeting_TIME=time;
+                td.committee_NAME=dept;
+                td.url=url;
+
+                to_list.add(td);
+
+            }
+
+
+            as.setCm_List(to_list);
+            as.notifyDataSetChanged();
+            Log.d("어뎁터a1", String.valueOf(as.getItemCount()));//어뎁터에 세팅은 완료
 
 
 
