@@ -30,7 +30,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/calander_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="E-mail address"

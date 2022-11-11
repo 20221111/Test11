@@ -1,12 +1,9 @@
 package com.example.test11;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,10 +16,10 @@ class ViewHolder extends RecyclerView.ViewHolder {
 
     ViewHolder(Context context, View itemView){
         super(itemView);
-        title = itemView.findViewById(R.id.textView1);
+        title = itemView.findViewById(R.id.calander_title);
         sub = itemView.findViewById(R.id.sub1);
-        time = itemView.findViewById(R.id.textView3);
-        com_name = itemView.findViewById(R.id.com_name);
+        time = itemView.findViewById(R.id.calander_time);
+        com_name = itemView.findViewById(R.id.Calader_com);
         url = itemView.findViewById(R.id.url);
 
 
