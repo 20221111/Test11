@@ -347,15 +347,6 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                 }
 
 
-
-
-
-                //read.adapter.setCdate(clickDate,true);
-                //read.adapter.notifyDataSetChanged();
-
-
-
-
             }
 
             @Override
@@ -605,9 +596,6 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                 });
             }
         });
-
-        //ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
-
 
         return v;
 

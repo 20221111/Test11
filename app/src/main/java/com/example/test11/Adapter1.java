@@ -47,10 +47,6 @@ public class Adapter1 extends RecyclerView.Adapter<ViewHolder> {
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        //commMain cm = cm_List.get(position);
-        //String mg= (String) mergedList.get(position);
-        //String imageurl=drugimage.getDrugImg();
-
         insertData read = new insertData();
         read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/subscribe/Show/"+ma.memberid, "5");
         new Handler().postDelayed(new Runnable() {
