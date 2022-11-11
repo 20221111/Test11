@@ -79,13 +79,14 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
     Event ev6;
     selectdata read;
     insertData read2;
+    selectdata sc;
     String Check="false";
     Boolean b_c=false;
     Boolean k_c=false;
     Boolean m_c=false;
     Boolean sm_c=false;
     Boolean s_c=false;
-
+    String filter;
 
     List<String> Filter=new ArrayList<>();
 
@@ -124,7 +125,7 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
 
         read = new selectdata();
-        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
+        read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText,"0");
 
         read2 = new insertData();
         read2.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
@@ -139,24 +140,6 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
         recyclerview.setAdapter(read.a1); //selectData에서 add해도 성공
         read.a1.notifyDataSetChanged();
 
-        if(Check.equals("true")){
-
-            for(int i=0;i<Filter.size();i++){
-                if(Filter.size()==4){
-                    break;
-                }
-                if(read.a1.tt_List.get(i).getType()!=Filter.get(i)){
-                    read.a1.tt_List.remove(i);
-                }
-                /*if(read1.a1.tt_List.get(i).getType()!=Filter.get(i)){
-                    read1.a1.tt_List.remove(i);
-
-                }*/
-            }
-            read.a1.notifyDataSetChanged();
-            //read1.a1.notifyDataSetChanged();
-
-        }
 
 
         new Handler().postDelayed(new Runnable() {
@@ -193,7 +176,7 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                             compactCalendarView.addEvent(ev5);
                         }
 
-                        else if(read.ti_list.get(i).getType().equals("seiminar")){
+                        else if(read.ti_list.get(i).getType().equals("seminar")){
                             ev6 = new Event(Color.BLUE, currentLong,read.ti_list.get(i).getTitle());
                             compactCalendarView.addEvent(ev6);
                         }
@@ -341,13 +324,26 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
                 switch (String.valueOf(scroll)){
                     case "true":
-                        read1.to_list.clear();
-                        read1.showResult(clickDate);
+                        if(Check.equals("true")){
+                            read1.to_list.clear();
+                            sc.to_list.clear();
+                            sc.showResult2(clickDate,Filter);
+                        }
+                        else{
+                            read1.to_list.clear();
+                            read1.showResult(clickDate);
+                        }
                         break;
                     case "false":
-                        read.to_list.clear();
-                        read.showResult(clickDate);
-
+                        if(Check.equals("true")){
+                            read1.to_list.clear();
+                            sc.to_list.clear();
+                            sc.showResult2(clickDate,Filter);
+                        }
+                        else{
+                            read.to_list.clear();
+                            read.showResult(clickDate);
+                        }
                 }
 
 
@@ -374,7 +370,7 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
                 ExecutorService THREAD_POOL= Executors.newFixedThreadPool(12);
                 read1=new selectdata();
-                read1.executeOnExecutor(THREAD_POOL,"http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText, "0");
+                read1.executeOnExecutor(THREAD_POOL,"http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText,"0");
 
                 insertData read2 = new insertData();
                 read2.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Memo/Show/"+ma.memberid, "7");
@@ -427,7 +423,7 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                                     //compactCalendarView.addEvent(ev5);
                                 }
 
-                                else if(read1.ti_list.get(i).getType().equals("seiminar")){
+                                else if(read1.ti_list.get(i).getType().equals("seminar")){
                                     Event ev12 = new Event(Color.BLUE, currentLong1,read1.ti_list.get(i).getTitle());
                                     compactCalendarView.addEvent(ev12);
                                     //compactCalendarView.addEvent(ev12);
@@ -478,36 +474,123 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
                 CheckBox ck_small=popupView.findViewById(R.id.small);//소회의
                 CheckBox ck_semi=popupView.findViewById(R.id.semi);//세미나
 
-                if (ck_bon.isChecked()) {
-                    Filter.add("bonsche");
-                    b_c=true;
-                }
 
-                if (ck_main.isChecked()) {
-                    Filter.add("commMain");
-                    m_c=true;
-                }
-
-                if (ck_kong.isChecked()) {
-                    Filter.add("commKong");
-                    k_c=true;
-                }
-
-                if (ck_small.isChecked()) {
-                    Filter.add("commSmall");
-                    sm_c=true;
-                }
-
-                if (ck_semi.isChecked()) {
-                    Filter.add("seminar");
-                    s_c=true;
-                }
 
                 //확인버튼
                 Button btnInsert = popupView.findViewById(R.id.ok);
                 btnInsert.setOnClickListener(new Button.OnClickListener(){
                     public void onClick(View v){
                         Check="true";
+                        Filter.clear();
+
+                        if (ck_bon.isChecked()) {
+                            Filter.add("bonsche");
+                            b_c=true;
+                        }
+
+                        if (ck_main.isChecked()) {
+                            Filter.add("commMain");
+                            m_c=true;
+                        }
+
+                        if (ck_kong.isChecked()) {
+                            Filter.add("commKong");
+                            k_c=true;
+                        }
+
+                        if (ck_small.isChecked()) {
+                            Filter.add("commSmall");
+                            sm_c=true;
+                        }
+
+                        if (ck_semi.isChecked()) {
+                            Filter.add("seminar");
+                            s_c=true;
+                        }
+
+                        filter=String.join(",",  Filter);
+
+                        sc=new selectdata();
+                        sc.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/calender/month/"+searchText+"/"+filter,"1");
+
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {//버그있음 리스트 안 비워짐 -> 비워야함
+                                //Log.d("어뎁터왔나", String.valueOf(read1.a1.getItemCount()));//어뎁터에 세팅은 완료
+                                //selectdata st =new selectdata();
+                                //Date currentDay1 = null;
+                                sc.showResult2(clickD,Filter);
+                                read.to_list.clear();
+                                recyclerview.setAdapter(sc.a1); //selectData에서 add해도 성공
+                                sc.a1.notifyDataSetChanged();
+
+                                compactCalendarView.removeAllEvents();
+
+
+                                String data;
+                                Log.d("날짜확인", String.valueOf(sc.ti_list.size()));
+                                try {
+                                    // .parse 함수 : Parses text from a string to produce a Date (문자열에서 텍스트를 분석하여 날짜 생성)
+                                    for(int i=0;i<sc.ti_list.size();i++){
+                                        currentDay1 = simpleDate.parse(sc.ti_list.get(i).getMeeting_DATE());
+                                        currentLong1 = currentDay1.getTime();
+                                        //Log.d("날짜확인", read1.ti_list.get(i).getMeeting_DATE());
+                                        //compactCalendarView.removeEvents(currentLong1);
+
+                                        if(sc.ti_list.get(i).getType().equals("bonsche")){
+
+                                            Event ev8 = new Event(Color.RED, currentLong1,sc.ti_list.get(i).getTitle());
+                                            compactCalendarView.addEvent(ev8);
+                                            //compactCalendarView.addEvent(ev2);
+                                        }
+                                        else if(sc.ti_list.get(i).getType().equals("commKong")){
+                                            Event ev9 = new Event(Color.LTGRAY, currentLong1,sc.ti_list.get(i).getTitle());
+                                            compactCalendarView.addEvent(ev9);
+                                            //compactCalendarView.addEvent(ev3);
+                                        }
+                                        else if(sc.ti_list.get(i).getType().equals("commMain")){
+                                            Event ev10 = new Event(Color.BLACK, currentLong1,sc.ti_list.get(i).getTitle());
+                                            compactCalendarView.addEvent(ev10);
+                                            //compactCalendarView.addEvent(ev4);
+                                        }
+                                        else if(sc.ti_list.get(i).getType().equals("commSmall")){
+                                            Event ev11 = new Event(Color.MAGENTA, currentLong1,sc.ti_list.get(i).getTitle());
+                                            compactCalendarView.addEvent(ev11);
+                                            //compactCalendarView.addEvent(ev5);
+                                        }
+
+                                        else if(sc.ti_list.get(i).getType().equals("seminar")){
+                                            Event ev12 = new Event(Color.BLUE, currentLong1,sc.ti_list.get(i).getTitle());
+                                            compactCalendarView.addEvent(ev12);
+                                            //compactCalendarView.addEvent(ev12);
+                                        }
+
+                                    }
+
+                                    for(int i=0;i<read2.mo_list.size();i++){
+                                        currentDay = simpleDate.parse(read2.mo_list.get(i).getDate());
+                                        Long currentLong = currentDay.getTime();
+                                        ev1 = new Event(Color.GREEN, currentLong, read2.mo_list.get(i).getContents());
+                                        //Log.d("메모 점찍기 확인 ", read2.mo_list.get(i).getContents());
+                                        compactCalendarView.addEvent(ev1);
+                                    }
+
+                                    Log.d(TAG, "태그 currentDay : " + currentDay);
+
+                                    Log.d(TAG, "태그 currentDay : " + currentDay1);
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, 1000);
+
+
+
+
+
                         alertDialog.dismiss();
 
                     }
@@ -541,4 +624,3 @@ public class home extends Fragment implements View.OnClickListener, CompoundButt
 
     }
 }
-
