@@ -42,7 +42,6 @@ public class selectdata extends AsyncTask<String, Void, String> {
     //RecyclerView recyclerview;
     //Adapter adapter = new Adapter(td_list);
     Adapter1 a1=new Adapter1(to_list);
-    //Adapter1 a2=new Adapter1(td_list);
     SetDotlist dl=new SetDotlist(ti_list);
 
 
@@ -74,18 +73,12 @@ public class selectdata extends AsyncTask<String, Void, String> {
             mTextViewResult.setText(errorString);
         } else {
 
-
-            switch (postParameters){
-                case 0:
-                    Log.d("데이터소통-일정", result);
-                    showResult(searchText);
-
-                case 1:
-                    Log.d("데이터소통-필터", result);
-                    //showResult(searchText,filter);
+            mJsonString = result;
+            Log.d("데이터소통-일정", result);
+            Log.d("데이터소통-일정", String.valueOf(postParameters));
+            if(postParameters==0){
+                showResult(searchText);
             }
-
-
 
 
 
@@ -120,7 +113,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
             //OutputStream outputStream = httpURLConnection.getOutputStream();
             if (params[1] == "0") {
                 //outputStream.write(postParameters.getBytes("UTF-8"));
-               Log.d("과연", "그냥");
+                Log.d("과연", "그냥");
             }
             else if (params[1] == "1") {
 
@@ -164,7 +157,6 @@ public class selectdata extends AsyncTask<String, Void, String> {
         }
     }
 
-
     public void showResult(String searchText) {
 
         String TAG_JSON2 = "commKong";
@@ -176,6 +168,8 @@ public class selectdata extends AsyncTask<String, Void, String> {
         String TAG_TIME = "meeting_TIME";
         String TAG_TITLE = "title";;
         String TAG_CMANE = "committee_NAME";
+
+
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
@@ -218,7 +212,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    td_list.add(td);
+                    to_list.add(td);
                 }
                 //to_list.add(td);
                 /*adapter.setCm_List(td);
@@ -257,8 +251,14 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    td_list.add(td);
+                    to_list.add(td);
                 }
+                /*adapter.setCm_List(td);
+                adapter.notifyDataSetChanged();*/
+                //아래 예시처럼 생성자에 세팅된 데이터 배열에 넣어주기
+                /*adapter.setArrayData(drugData);
+                adapter.notifyDataSetChanged();*/
+
 
             }
 
@@ -292,7 +292,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    td_list.add(td);
+                    to_list.add(td);
                 }
                 //cm_list.add(cm);
                 //Log.d("어뎁터테스트", String.valueOf(adapter.getItemCount()));//어뎁터에 세팅은 완료
@@ -334,7 +334,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    td_list.add(td);
+                    to_list.add(td);
                 }
 
 
@@ -377,7 +377,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
 
                 ti_list.add(ti);
                 if(td.getMeeting_DATE().substring(0,10).equals(searchText)){//디폴트로 오늘 날짜만 출력
-                    td_list.add(td);
+                    to_list.add(td);
                 }
 
 
@@ -393,7 +393,7 @@ public class selectdata extends AsyncTask<String, Void, String> {
             }
 
 
-            a1.setCm_List(td_list);
+            a1.setCm_List(to_list);
             a1.notifyDataSetChanged();
             Log.d("어뎁터a1", String.valueOf(a1.getItemCount()));//어뎁터에 세팅은 완료
 
@@ -411,7 +411,6 @@ public class selectdata extends AsyncTask<String, Void, String> {
         }
 
     }
-
 
     public void showResult2(String searchText,List<String> filter) {
 
@@ -629,9 +628,6 @@ public class selectdata extends AsyncTask<String, Void, String> {
         }
 
     }
-
-
-
 
 
 
