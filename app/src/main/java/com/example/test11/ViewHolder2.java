@@ -17,8 +17,8 @@ class ViewHolder2 extends RecyclerView.ViewHolder {
     public ViewHolder2(Context context, View itemView){
         super(itemView);
 
-        title = itemView.findViewById(R.id.textView1);
-        time = itemView.findViewById(R.id.textView3);
+        title = itemView.findViewById(R.id.textView11);
+        time = itemView.findViewById(R.id.textView10);
         button = itemView.findViewById(R.id.but_Delete_subs);
     }
 }
