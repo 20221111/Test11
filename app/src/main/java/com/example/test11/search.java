@@ -2,6 +2,7 @@ package com.example.test11;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,12 +46,29 @@ public class search extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerview_search.setLayoutManager(linearLayoutManager);
 
-        editSearch.setOnKeyListener(new View.OnKeyListener() {
+        editText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {//엔터 누르면 키보드 내려감 이뮬레이터에서는 안됨 노트북 엔터
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);    //hide keyboard
+                    findS= String.valueOf(editText.getText());
+                    insertData read = new insertData();
+                    read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Search/"+findS, "8");
+                    recyclerview_search.setAdapter(read.as); //selectData에서 add해도 성공
+                    read.as.notifyDataSetChanged();
+                    return true;
+                }
+                return false;
+            }
+        });
+        /*editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 switch (keyCode){
                     case KeyEvent.KEYCODE_ENTER:
-                        findS= String.valueOf(editSearch.getText());
+                        findS= String.valueOf(editText.getText());
                         insertData read = new insertData();
                         read.execute("http://ec2-13-231-175-154.ap-northeast-1.compute.amazonaws.com:8080/Search/"+findS, "8");
                         recyclerview_search.setAdapter(read.as); //selectData에서 add해도 성공
@@ -58,7 +76,7 @@ public class search extends Fragment {
                 }
                 return false;
             }
-        });
+        });*/
 
 
 
