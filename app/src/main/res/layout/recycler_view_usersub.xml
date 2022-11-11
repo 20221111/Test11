@@ -4,29 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_gravity="top"
-    android:background="@drawable/border"
+    android:layout_marginBottom="1dp"
+    android:background="@color/material_dynamic_neutral70"
     android:foregroundGravity="top"
     android:gravity="top"
     android:orientation="horizontal"
     app:layout_anchorGravity="top">
 
     <TextView
-        android:id="@+id/textView3"
-        style="@style/recyclerview_contents"
+        android:id="@+id/textView10"
         android:layout_width="87dp"
         android:layout_height="50dp"
-        android:layout_gravity="top"
-        android:foregroundGravity="top|center_vertical"
-        android:text="날짜" />
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="날짜"
+        android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/textView1"
-        style="@style/recyclerview_contents"
+        android:id="@+id/textView11"
         android:layout_width="228dp"
         android:layout_height="50dp"
-        android:layout_gravity="top"
-        android:foregroundGravity="top|center_vertical"
-        android:text="제목" />
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="제목"
+        android:textColor="@color/black" />
 
     <ImageButton
         android:id="@+id/but_Delete_subs"
