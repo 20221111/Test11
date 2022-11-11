@@ -12,18 +12,18 @@
     app:layout_anchorGravity="top">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/memo_time"
         android:layout_width="87dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="날짜"
+        android:text="시간"
         android:textColor="@color/black" />
 
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/memo_title"
         android:layout_width="228dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
